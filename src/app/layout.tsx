@@ -3,6 +3,7 @@ import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import DemoDisclaimer from '@/components/ui/DemoDisclaimer';
+import CustomCursor from '@/components/ui/CustomCursor';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ami-astro.amity.edu'),
@@ -50,6 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth h-full">
       <body className="min-h-screen bg-[#0B0F19] text-white flex flex-col antialiased selection:bg-[#6C63FF]/30 selection:text-[#A78BFA]">
+        <CustomCursor />
         <DemoDisclaimer />
         <Navbar />
         <main className="flex-1 w-full flex flex-col">{children}</main>
