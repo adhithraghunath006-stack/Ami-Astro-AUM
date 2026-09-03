@@ -103,3 +103,166 @@ body {
   background-repeat: repeat;
   background-size: 800px 500px;
 }
+
+/* Living Cosmos Dynamic Keyframes */
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes reverseSpinSlow {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes solarBreathing {
+  0%, 100% {
+    transform: scale(0.95);
+    opacity: 0.28;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.45;
+  }
+}
+
+@keyframes pulseSlow {
+  0%, 100% {
+    transform: scale(0.96);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+}
+
+@keyframes cosmicBreathing {
+  0%, 100% {
+    transform: scale(1.03) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.05) translate3d(0, -6px, 0);
+  }
+}
+
+@keyframes subtleOrbitFloat {
+  0%, 100% {
+    transform: rotate(-21deg) scale(1);
+  }
+  50% {
+    transform: rotate(-21deg) scale(1.015);
+  }
+}
+
+@keyframes orbitDashFast {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -388;
+  }
+}
+
+@keyframes orbitDashMedium {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -568;
+  }
+}
+
+@keyframes orbitDashSlow {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -760;
+  }
+}
+
+@keyframes orbitDashUltraSlow {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -1200;
+  }
+}
+
+@keyframes shootingStar {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(-35deg) scaleX(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+    transform: translate3d(40px, 28px, 0) rotate(-35deg) scaleX(1);
+  }
+  35% {
+    opacity: 0;
+    transform: translate3d(180px, 125px, 0) rotate(-35deg) scaleX(0.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(180px, 125px, 0) rotate(-35deg) scaleX(0);
+  }
+}
+
+.animate-spin-ultra-slow {
+  animation: spinSlow 48s linear infinite;
+}
+
+.animate-reverse-spin-slow {
+  animation: reverseSpinSlow 64s linear infinite;
+}
+
+.animate-solar-breathing {
+  animation: solarBreathing 7s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulseSlow 4.5s ease-in-out infinite;
+}
+
+.animate-cosmic-breathing {
+  animation: cosmicBreathing 14s ease-in-out infinite;
+}
+
+.animate-subtle-orbit-float {
+  animation: subtleOrbitFloat 12s ease-in-out infinite;
+}
+
+.animate-orbit-pulse-fast {
+  animation: orbitDashFast 9s linear infinite;
+}
+
+.animate-orbit-pulse-medium {
+  animation: orbitDashMedium 14s linear infinite;
+}
+
+.animate-orbit-pulse-slow {
+  animation: orbitDashSlow 22s linear infinite;
+}
+
+.animate-orbit-pulse-ultra-slow {
+  animation: orbitDashUltraSlow 32s linear infinite;
+}
+
+.shooting-star-streak {
+  width: 90px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.95), rgba(167, 139, 250, 0.8), transparent);
+  border-radius: 9999px;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  animation: shootingStar 7s ease-out infinite;
+}
