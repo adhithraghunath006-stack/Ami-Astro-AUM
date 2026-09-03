@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme {
+  --color-space-dark: #0b0f19;
+  --color-space-card: #12182b;
+  --color-space-card-hover: #182038;
+  --color-space-surface: #151d33;
+  --color-space-border: #1e293b;
+  --color-space-border-light: #2d3b55;
+  --color-brand-purple: #6c63ff;
+  --color-brand-purple-hover: #5b52f0;
+  --color-brand-light: #a78bfa;
+  --color-brand-glow: rgba(108, 99, 255, 0.35);
+  --color-space-muted: #94a3b8;
+  --color-space-dim: #64748b;
+}
+
+:root {
+  --background: #0b0f19;
+  --foreground: #ffffff;
+  color-scheme: dark;
+}
+
+body {
+  background-color: #0b0f19;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Custom Cosmic Utilities */
+.cosmic-glow {
+  box-shadow: 0 0 30px rgba(108, 99, 255, 0.25);
+}
+
+.cosmic-glow-hover:hover {
+  box-shadow: 0 0 35px rgba(108, 99, 255, 0.45);
+  border-color: #6c63ff;
+}
+
+.cosmic-card {
+  background: rgba(18, 24, 43, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid #1e293b;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cosmic-card:hover {
+  border-color: #2d3b55;
+  transform: translateY(-2px);
+}
+
+.cosmic-badge {
+  background: rgba(108, 99, 255, 0.15);
+  border: 1px solid rgba(108, 99, 255, 0.35);
+  color: #a78bfa;
+}
+
+/* Glassmorphic Navbar */
+.nav-glass {
+  background: rgba(11, 15, 25, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(30, 41, 59, 0.6);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b0f19;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6c63ff;
+}
+
+/* Subtle Starfield Background */
+.stars-bg {
+  background-image: 
+    radial-gradient(1.5px 1.5px at 40px 60px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 150px 180px, #a78bfa, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 280px 90px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 400px 320px, #6c63ff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 550px 210px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 700px 140px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 850px 390px, #a78bfa, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 980px 250px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 1150px 110px, #6c63ff, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 1300px 340px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 1450px 220px, #a78bfa, rgba(0,0,0,0));
+  background-repeat: repeat;
+  background-size: 800px 500px;
+}
