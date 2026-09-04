@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles, Eye, X } from 'lucide-react';
 import { EVENTS_DATA } from '@/data/events';
 import { GALLERY_DATA } from '@/data/gallery';
 import { GalleryCategory } from '@/types';
@@ -13,6 +13,7 @@ import Button from '@/components/ui/Button';
 
 export default function EventsPage() {
   const [activeCategory, setActiveCategory] = useState<GalleryCategory>('all');
+  const [showPosterModal, setShowPosterModal] = useState(false);
 
   const categories: { label: string; value: GalleryCategory }[] = [
     { label: 'All', value: 'all' },
@@ -56,14 +57,21 @@ export default function EventsPage() {
 
           <div className="relative z-10 max-w-2xl">
             <span className="text-xs font-bold tracking-[0.2em] text-[#A78BFA] uppercase block mb-3">
-              EXPLORE THE CALENDAR
+              SEPTEMBER 2026 • CELESTIAL CALENDAR
             </span>
             <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
-              Upcoming Events
+              Astronomical Events Calendar
             </h1>
-            <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed">
-              Join us for exciting events and explore the cosmos together. Hands-on observations, guest scientific talks, and mountain astrocamps.
+            <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed mb-6">
+              Plan your nights. Look up. Be amazed. Here are the key astronomical events in September 2026 — planetary conjunctions, greatest elongation, equinox alignment, and dark-sky expeditions.
             </p>
+            <button
+              onClick={() => setShowPosterModal(true)}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#6C63FF]/20 hover:bg-[#6C63FF]/30 border border-[#6C63FF]/40 text-xs font-bold tracking-wider text-[#A78BFA] hover:text-white uppercase transition-all shadow-[0_0_20px_rgba(108,99,255,0.2)]"
+            >
+              <Eye className="w-4 h-4" />
+              <span>View Official Poster</span>
+            </button>
           </div>
         </div>
 
@@ -153,6 +161,53 @@ export default function EventsPage() {
           </div>
         </div>
       </div>
+
+      {/* Official September 2026 Calendar Poster Modal */}
+      {showPosterModal && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
+        >
+          <div
+            onClick={() => setShowPosterModal(false)}
+            className="fixed inset-0 bg-black/85 backdrop-blur-md transition-opacity"
+          />
+          <div className="relative z-10 max-w-4xl w-full bg-[#0E1424] border border-[#1E293B] rounded-2xl overflow-hidden shadow-2xl p-4 sm:p-6 max-h-[92vh] flex flex-col">
+            <div className="flex items-center justify-between pb-3 border-b border-[#1E293B] mb-3">
+              <div>
+                <span className="text-[10px] font-bold tracking-widest text-[#A78BFA] uppercase block">
+                  AMI ASTRO CLUB • OFFICIAL RELEASE
+                </span>
+                <h3 className="text-base sm:text-lg font-bold text-white">
+                  September 2026 Astronomical Events Calendar
+                </h3>
+              </div>
+              <button
+                onClick={() => setShowPosterModal(false)}
+                aria-label="Close poster preview"
+                className="p-1.5 rounded-lg text-[#94A3B8] hover:text-white hover:bg-[#12182B] border border-[#1E293B] transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="relative aspect-[1024/718] w-full rounded-xl overflow-hidden border border-[#1E293B] bg-black">
+              <Image
+                src="/images/events/september-2026-calendar.jpg"
+                alt="AMI Astro Club September 2026 Astronomical Events Calendar"
+                fill
+                className="object-contain"
+                sizes="(max-width: 1024px) 100vw, 900px"
+              />
+            </div>
+            <div className="pt-3 text-center">
+              <p className="text-xs text-[#94A3B8] italic">
+                &ldquo;Stay curious. Keep looking up!&rdquo;
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -65,8 +65,16 @@ export default function HomeEventsSection() {
 
                 {/* Date & Title */}
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="w-14 h-14 rounded-xl bg-[#0B0F19] border border-[#1E293B] flex flex-col items-center justify-center text-center shrink-0 group-hover:border-[#6C63FF]/50 transition-colors">
-                    <span className="text-lg font-black text-white leading-none">
+                  <div className="w-14 h-14 rounded-xl bg-[#0B0F19] border border-[#1E293B] flex flex-col items-center justify-center text-center shrink-0 group-hover:border-[#6C63FF]/50 transition-colors px-1">
+                    <span
+                      className={`font-black text-white leading-none ${
+                        event.dateBadge.day.length > 3
+                          ? 'text-xs tracking-tight'
+                          : event.dateBadge.day.length === 3
+                          ? 'text-sm'
+                          : 'text-lg'
+                      }`}
+                    >
                       {event.dateBadge.day}
                     </span>
                     <span className="text-[10px] font-bold text-[#A78BFA] tracking-wider uppercase mt-0.5">
