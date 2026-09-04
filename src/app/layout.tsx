@@ -4,6 +4,7 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import StardustCursorTrail from '@/components/ui/StardustCursorTrail';
 import CosmicSpaceBackground from '@/components/space/CosmicSpaceBackground';
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ami-astro.amity.edu'),
@@ -61,6 +62,7 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-1 w-full flex flex-col relative z-10">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
