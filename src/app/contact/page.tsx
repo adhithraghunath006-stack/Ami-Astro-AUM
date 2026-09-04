@@ -22,7 +22,8 @@ export default function ContactPage() {
   const [inquiryType, setInquiryType] = useState('join');
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
-  const [studentId, setStudentId] = useState('');
+  const [enrollmentNo, setEnrollmentNo] = useState('');
+  const [department, setDepartment] = useState('');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -33,7 +34,7 @@ export default function ContactPage() {
   const faqs = [
     {
       q: 'How do I join AMI-ASTRO as a student?',
-      a: 'All enrolled students of Amity University Mumbai (undergraduate, postgraduate, and PhD scholars from any department) are welcome to join. Fill out the form above with your student ID, or attend our alternate Friday orientation sessions.',
+      a: 'All enrolled students of Amity University Mumbai (undergraduate, postgraduate, and PhD scholars from any department) are welcome to join. Fill out the form above with your Enrollment No, or attend our alternate Friday orientation sessions.',
     },
     {
       q: 'Do I need prior astronomy knowledge or my own telescope?',
@@ -107,7 +108,8 @@ export default function ContactPage() {
                       setSubmitted(false);
                       setFullName('');
                       setEmail('');
-                      setStudentId('');
+                      setEnrollmentNo('');
+                      setDepartment('');
                       setMessage('');
                     }}
                     variant="secondary"
@@ -177,18 +179,34 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  {/* Student ID / Department */}
-                  <div>
-                    <label className="block text-xs font-semibold text-[#94A3B8] mb-1.5">
-                      Student ID or Department (Optional)
-                    </label>
-                    <input
-                      type="text"
-                      value={studentId}
-                      onChange={(e) => setStudentId(e.target.value)}
-                      placeholder="e.g. A9910022045 or Aerospace Dept"
-                      className="w-full px-3.5 py-2.5 bg-[#12182B] border border-[#1E293B] rounded-lg text-sm text-white placeholder-[#64748B] focus:outline-none focus:border-[#6C63FF]"
-                    />
+                  {/* Enrollment No & Department */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-semibold text-[#94A3B8] mb-1.5">
+                        Enrollment No *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={enrollmentNo}
+                        onChange={(e) => setEnrollmentNo(e.target.value)}
+                        placeholder="e.g. A9910022045"
+                        className="w-full px-3.5 py-2.5 bg-[#12182B] border border-[#1E293B] rounded-lg text-sm text-white placeholder-[#64748B] focus:outline-none focus:border-[#6C63FF]"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-[#94A3B8] mb-1.5">
+                        Department / Program *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={department}
+                        onChange={(e) => setDepartment(e.target.value)}
+                        placeholder="e.g. B.Tech Aerospace / Physics"
+                        className="w-full px-3.5 py-2.5 bg-[#12182B] border border-[#1E293B] rounded-lg text-sm text-white placeholder-[#64748B] focus:outline-none focus:border-[#6C63FF]"
+                      />
+                    </div>
                   </div>
 
                   {/* Message */}

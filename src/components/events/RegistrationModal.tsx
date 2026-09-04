@@ -18,7 +18,7 @@ export default function RegistrationModal({
 }: RegistrationModalProps) {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
-  const [studentId, setStudentId] = useState('');
+  const [enrollmentNo, setEnrollmentNo] = useState('');
   const [department, setDepartment] = useState('');
   const [hasTelescope, setHasTelescope] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -97,6 +97,14 @@ export default function RegistrationModal({
                 <span className="text-white">{fullName || 'Student Explorer'}</span>
               </div>
               <div>
+                <span className="text-[#64748B]">Enrollment No:</span>{' '}
+                <span className="text-white font-mono">{enrollmentNo}</span>
+              </div>
+              <div>
+                <span className="text-[#64748B]">Department:</span>{' '}
+                <span className="text-white">{department}</span>
+              </div>
+              <div>
                 <span className="text-[#64748B]">Venue:</span>{' '}
                 <span className="text-white">{event.location}</span>
               </div>
@@ -108,7 +116,7 @@ export default function RegistrationModal({
 
             <div className="bg-[#6C63FF]/10 border border-[#6C63FF]/30 text-[#A78BFA] text-xs p-3 rounded-lg w-full mb-6 flex items-center justify-center gap-2">
               <Sparkles className="w-4 h-4 text-[#A78BFA] shrink-0" />
-              <span>A digital entry pass has been reserved for your Amity Student ID.</span>
+              <span>A digital entry pass has been reserved for Enrollment No: {enrollmentNo}.</span>
             </div>
 
             <Button
@@ -166,13 +174,14 @@ export default function RegistrationModal({
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-[#94A3B8] mb-1.5">
-                    Student / Roll No (Optional)
+                    Enrollment No *
                   </label>
                   <input
                     type="text"
-                    value={studentId}
-                    onChange={(e) => setStudentId(e.target.value)}
-                    placeholder="A9910022045"
+                    required
+                    value={enrollmentNo}
+                    onChange={(e) => setEnrollmentNo(e.target.value)}
+                    placeholder="e.g. A9910022045"
                     className="w-full px-3.5 py-2.5 bg-[#12182B] border border-[#1E293B] rounded-lg text-sm text-white placeholder-[#64748B] focus:outline-none focus:border-[#6C63FF]"
                   />
                 </div>
@@ -180,10 +189,11 @@ export default function RegistrationModal({
 
               <div>
                 <label className="block text-xs font-semibold text-[#94A3B8] mb-1.5">
-                  Department / Program
+                  Department / Program *
                 </label>
                 <input
                   type="text"
+                  required
                   value={department}
                   onChange={(e) => setDepartment(e.target.value)}
                   placeholder="e.g. B.Tech Aerospace / Physics"
