@@ -8,9 +8,13 @@ interface Star {
   depth: number; // 0 (far) to 1 (near)
   radius: number;
   baseAlpha: number;
-  twinkleSpeed: number;
-  twinklePhase: number;
+  phase1: number;
+  phase2: number;
+  speed1: number;
+  speed2: number;
   colorRgb: string;
+  isSparkler: boolean;
+  spikeLength: number;
 }
 
 interface Asteroid {
@@ -99,15 +103,30 @@ export default function CosmicSpaceBackground() {
 
       for (let i = 0; i < starCount; i++) {
         const depth = Math.random();
+        // ~15% of brightest, near stars are prominent scintillators
+        const isSparkler = depth > 0.78 && Math.random() < 0.45;
+        const radius = isSparkler
+          ? (1.3 + Math.random() * 0.8)
+          : (0.35 + depth * 1.3) * (Math.random() * 0.5 + 0.75);
+
+        // Harmonic frequencies: base atmospheric pulse + high-frequency scintillation
+        const baseSpeed = 0.007 + Math.random() * 0.02;
+        const speed1 = baseSpeed;
+        const speed2 = baseSpeed * (1.73 + Math.random() * 0.85);
+
         stars.push({
           x: Math.random() * width,
           y: Math.random() * height,
           depth,
-          radius: (0.4 + depth * 1.4) * (Math.random() * 0.6 + 0.7),
-          baseAlpha: 0.25 + depth * 0.7,
-          twinkleSpeed: 0.015 + Math.random() * 0.04,
-          twinklePhase: Math.random() * Math.PI * 2,
+          radius,
+          baseAlpha: isSparkler ? (0.75 + Math.random() * 0.25) : (0.2 + depth * 0.65),
+          phase1: Math.random() * Math.PI * 2,
+          phase2: Math.random() * Math.PI * 2,
+          speed1,
+          speed2,
           colorRgb: starColors[Math.floor(Math.random() * starColors.length)],
+          isSparkler,
+          spikeLength: (5 + Math.random() * 7) * (radius / 1.5),
         });
       }
 
@@ -233,7 +252,7 @@ export default function CosmicSpaceBackground() {
       ctx!.fillStyle = neb2;
       ctx!.fillRect(0, 0, width, height);
 
-      // 3. Render Multi-Layered Stars with Parallax
+      // 3. Render Multi-Layered Stars with Natural Atmospheric Scintillation
       const starLen = stars.length;
       for (let i = 0; i < starLen; i++) {
         const star = stars[i];
@@ -242,22 +261,54 @@ export default function CosmicSpaceBackground() {
         const parallaxOffset = scrollY * (0.05 + star.depth * 0.35);
         let currentY = (star.y - (parallaxOffset % height) + height) % height;
 
-        // Twinkle calculation
-        star.twinklePhase += star.twinkleSpeed;
-        const twinkle = (Math.sin(star.twinklePhase) + 1) * 0.5;
-        const alpha = Math.min(1, Math.max(0.1, star.baseAlpha * (0.65 + twinkle * 0.5)));
+        // Natural multi-harmonic scintillation (interfering non-integer frequencies)
+        star.phase1 += star.speed1;
+        star.phase2 += star.speed2;
 
+        const wave1 = Math.sin(star.phase1);
+        const wave2 = Math.sin(star.phase2);
+        const harmonic = wave1 * 0.68 + wave2 * 0.32;
+        // Non-linear power mimics real optical scintillation peaks and calm intervals
+        const scintillation = Math.pow((harmonic + 1) * 0.5, 1.8);
+
+        // Distant stars have gentle calm twinkling; near sparklers have dynamic flashes
+        const shimmerDepth = star.isSparkler ? 0.75 : (0.2 + star.depth * 0.35);
+        const alpha = Math.min(
+          1,
+          Math.max(0.08, star.baseAlpha * (1 - shimmerDepth + scintillation * shimmerDepth * 1.5))
+        );
+
+        // Dynamic apparent radius expansion during peak scintillation
+        const currentRadius = star.radius * (0.88 + scintillation * 0.25);
+
+        // Main star core
         ctx!.beginPath();
-        ctx!.arc(star.x, currentY, star.radius, 0, Math.PI * 2);
+        ctx!.arc(star.x, currentY, currentRadius, 0, Math.PI * 2);
         ctx!.fillStyle = `rgba(${star.colorRgb}, ${alpha})`;
         ctx!.fill();
 
-        // Extra soft star glow for nearest/brightest stars
-        if (star.depth > 0.82 && star.radius > 1.3) {
+        // Soft starlight halo bloom
+        if (star.isSparkler || (star.depth > 0.75 && star.radius > 1.2)) {
+          const haloRadius = currentRadius * (2.0 + scintillation * 1.4);
           ctx!.beginPath();
-          ctx!.arc(star.x, currentY, star.radius * 2.4, 0, Math.PI * 2);
-          ctx!.fillStyle = `rgba(${star.colorRgb}, ${alpha * 0.22})`;
+          ctx!.arc(star.x, currentY, haloRadius, 0, Math.PI * 2);
+          ctx!.fillStyle = `rgba(${star.colorRgb}, ${alpha * (0.12 + scintillation * 0.16)})`;
           ctx!.fill();
+
+          // Subtle 4-point optical diffraction spike during peak sparkle
+          if (star.isSparkler && scintillation > 0.72) {
+            const spikeAlpha = ((scintillation - 0.72) / 0.28) * alpha * 0.55;
+            const sLen = star.spikeLength * scintillation;
+
+            ctx!.strokeStyle = `rgba(${star.colorRgb}, ${spikeAlpha})`;
+            ctx!.lineWidth = 0.8;
+            ctx!.beginPath();
+            ctx!.moveTo(star.x - sLen, currentY);
+            ctx!.lineTo(star.x + sLen, currentY);
+            ctx!.moveTo(star.x, currentY - sLen);
+            ctx!.lineTo(star.x, currentY + sLen);
+            ctx!.stroke();
+          }
         }
       }
 
