@@ -47,7 +47,7 @@ export default function GalleryPage() {
   };
 
   return (
-    <div className="bg-[#0B0F19] text-white min-h-screen">
+    <div className="bg-transparent text-white min-h-screen relative">
       {/* Cinematic Page Hero Header */}
       <PageHeroHeader
         breadcrumbs={[
@@ -58,7 +58,7 @@ export default function GalleryPage() {
         title="Gallery & Media"
         description="Photographs captured by AMI-ASTRO members through club telescopes, long-exposure tracking mounts, and mountain observation expeditions across Maharashtra."
         action={
-          <div className="flex items-center gap-1.5 p-1.5 bg-[#12182B] border border-[#1E293B] rounded-2xl overflow-x-auto max-w-full">
+          <div className="flex items-center gap-1.5 p-1.5 bg-[#12182B]/70 backdrop-blur-md border border-[#1E293B]/70 rounded-2xl overflow-x-auto max-w-full">
             {categories.map((cat) => (
               <button
                 key={cat.value}

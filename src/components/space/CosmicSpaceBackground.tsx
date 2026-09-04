@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 
 interface Star {
   x: number;
@@ -149,6 +150,13 @@ const CONSTELLATIONS: ConstellationDef[] = [
 
 export default function CosmicSpaceBackground() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const pathname = usePathname();
+  const isGallery = pathname?.startsWith('/gallery') ?? false;
+  const isGalleryRef = useRef(isGallery);
+
+  useEffect(() => {
+    isGalleryRef.current = isGallery;
+  }, [isGallery]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -308,6 +316,7 @@ export default function CosmicSpaceBackground() {
     resize();
 
     let time = 0;
+    let galleryTransition = isGalleryRef.current ? 1 : 0;
 
     function render() {
       if (!isVisible) {
@@ -355,7 +364,94 @@ export default function CosmicSpaceBackground() {
       neb2.addColorStop(0, `rgba(56, 189, 248, ${0.11 - nebulaPulse})`);
       neb2.addColorStop(0.6, 'rgba(15, 43, 60, 0.05)');
       neb2.addColorStop(1, 'rgba(0, 0, 0, 0)');
-      // 2b. Render Famous Celestial Constellations
+      ctx!.fillStyle = neb2;
+      ctx!.fillRect(0, 0, width, height);
+
+      // Smooth crossfade tracking for Gallery page
+      const targetGallery = isGalleryRef.current ? 1 : 0;
+      galleryTransition += (targetGallery - galleryTransition) * 0.05;
+
+      // 2b. Gallery-Exclusive Celestial Signature: Milky Way Galactic Core & Carina Emission Nebula
+      if (galleryTransition > 0.005) {
+        ctx!.save();
+
+        // 1. Diagonal Milky Way Galactic Arch (Crossing from bottom-left to top-right)
+        const mwGrad = ctx!.createLinearGradient(0, height, width, 0);
+        mwGrad.addColorStop(0, 'rgba(0, 0, 0, 0)');
+        mwGrad.addColorStop(0.25, `rgba(139, 92, 246, ${0.08 * galleryTransition})`); // Deep violet ionized envelope
+        mwGrad.addColorStop(0.42, `rgba(244, 114, 182, ${0.13 * galleryTransition})`); // Hydrogen-alpha magenta fringe
+        mwGrad.addColorStop(0.50, `rgba(254, 240, 138, ${0.19 * galleryTransition})`); // Bright stellar dust core
+        mwGrad.addColorStop(0.58, `rgba(251, 191, 36, ${0.13 * galleryTransition})`);  // Warm golden starlight
+        mwGrad.addColorStop(0.75, `rgba(56, 189, 248, ${0.08 * galleryTransition})`);  // Cyan ionized edge
+        mwGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+        ctx!.fillStyle = mwGrad;
+        ctx!.fillRect(0, 0, width, height);
+
+        // 2. Galactic Bulge (Luminous elliptical core of our Galaxy in upper quadrant)
+        const coreX = width * 0.68;
+        const coreY = height * 0.36;
+        const coreRadius = Math.min(width, height) * 0.38;
+        const corePulse = Math.sin(time * 0.45) * 0.02;
+
+        const bulgeGrad = ctx!.createRadialGradient(
+          coreX,
+          coreY,
+          10,
+          coreX,
+          coreY,
+          coreRadius
+        );
+        bulgeGrad.addColorStop(0, `rgba(254, 243, 199, ${(0.22 + corePulse) * galleryTransition})`); // Bright galactic nucleus
+        bulgeGrad.addColorStop(0.25, `rgba(251, 146, 60, ${(0.16 + corePulse) * galleryTransition})`); // Warm bulge stellar halo
+        bulgeGrad.addColorStop(0.55, `rgba(217, 70, 239, ${(0.10 + corePulse) * galleryTransition})`); // Emission perimeter
+        bulgeGrad.addColorStop(0.85, `rgba(79, 70, 229, ${(0.05 + corePulse) * galleryTransition})`);  // Outer violet halo
+        bulgeGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+        ctx!.fillStyle = bulgeGrad;
+        ctx!.fillRect(0, 0, width, height);
+
+        // 3. Deep-Sky Emission Nebula (Carina / Orion complex in lower-left)
+        const nebX = width * 0.24;
+        const nebY = height * 0.68;
+        const nebRadius = Math.min(width, height) * 0.34;
+
+        const carinaGrad = ctx!.createRadialGradient(
+          nebX,
+          nebY,
+          15,
+          nebX,
+          nebY,
+          nebRadius
+        );
+        carinaGrad.addColorStop(0, `rgba(6, 182, 212, ${(0.16 - corePulse) * galleryTransition})`);  // O-III Cyan ionized core
+        carinaGrad.addColorStop(0.35, `rgba(168, 85, 247, ${(0.13 - corePulse) * galleryTransition})`); // H-alpha purple
+        carinaGrad.addColorStop(0.70, `rgba(244, 63, 94, ${(0.08 - corePulse) * galleryTransition})`);  // Hydrogen rose
+        carinaGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+        ctx!.fillStyle = carinaGrad;
+        ctx!.fillRect(0, 0, width, height);
+
+        // 4. Interstellar Dark Dust Rift (Great Rift absorption silhouetting the core)
+        const riftGrad = ctx!.createRadialGradient(
+          coreX - 25,
+          coreY + 20,
+          8,
+          coreX - 25,
+          coreY + 20,
+          coreRadius * 0.55
+        );
+        riftGrad.addColorStop(0, `rgba(6, 8, 16, ${(0.28 + corePulse) * galleryTransition})`);
+        riftGrad.addColorStop(0.6, `rgba(6, 8, 16, ${(0.12 + corePulse) * galleryTransition})`);
+        riftGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+        ctx!.fillStyle = riftGrad;
+        ctx!.fillRect(0, 0, width, height);
+
+        ctx!.restore();
+      }
+
+      // 2c. Render Famous Celestial Constellations
       const responsiveScale = Math.min(1.15, Math.max(0.7, width / 1200));
 
       for (let c = 0; c < CONSTELLATIONS.length; c++) {
