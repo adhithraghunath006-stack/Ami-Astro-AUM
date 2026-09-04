@@ -40,7 +40,7 @@ export default async function EventDetailPage({ params }: EventPageProps) {
   const highlightIcons = [Telescope, MessageCircle, HelpCircle, Users];
 
   return (
-    <div className="py-10 lg:py-16 bg-[#0B0F19]">
+    <div className="py-10 lg:py-16 bg-transparent relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb matching mockup Panel 4 */}
         <div className="mb-6 flex items-center justify-between">

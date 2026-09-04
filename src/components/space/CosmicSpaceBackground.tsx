@@ -152,14 +152,31 @@ export default function CosmicSpaceBackground() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const pathname = usePathname();
   const isGallery = pathname?.startsWith('/gallery') ?? false;
-  const isGalleryRef = useRef(isGallery);
   const isAbout = pathname?.startsWith('/about') ?? false;
-  const isAboutRef = useRef(isAbout);
+  const isEvents = pathname?.startsWith('/events') ?? false;
+  const isTeam = pathname?.startsWith('/team') ?? false;
+  const isAnnouncements = pathname?.startsWith('/announcements') ?? false;
+  const isContact = pathname?.startsWith('/contact') ?? false;
+
+  const routesRef = useRef({
+    isGallery,
+    isAbout,
+    isEvents,
+    isTeam,
+    isAnnouncements,
+    isContact,
+  });
 
   useEffect(() => {
-    isGalleryRef.current = isGallery;
-    isAboutRef.current = isAbout;
-  }, [isGallery, isAbout]);
+    routesRef.current = {
+      isGallery,
+      isAbout,
+      isEvents,
+      isTeam,
+      isAnnouncements,
+      isContact,
+    };
+  }, [isGallery, isAbout, isEvents, isTeam, isAnnouncements, isContact]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -319,8 +336,12 @@ export default function CosmicSpaceBackground() {
     resize();
 
     let time = 0;
-    let galleryTransition = isGalleryRef.current ? 1 : 0;
-    let aboutTransition = isAboutRef.current ? 1 : 0;
+    let galleryTransition = routesRef.current.isGallery ? 1 : 0;
+    let aboutTransition = routesRef.current.isAbout ? 1 : 0;
+    let eventsTransition = routesRef.current.isEvents ? 1 : 0;
+    let teamTransition = routesRef.current.isTeam ? 1 : 0;
+    let announcementsTransition = routesRef.current.isAnnouncements ? 1 : 0;
+    let contactTransition = routesRef.current.isContact ? 1 : 0;
 
     function render() {
       if (!isVisible) {
@@ -372,7 +393,7 @@ export default function CosmicSpaceBackground() {
       ctx!.fillRect(0, 0, width, height);
 
       // Smooth crossfade tracking for Gallery page
-      const targetGallery = isGalleryRef.current ? 1 : 0;
+      const targetGallery = routesRef.current.isGallery ? 1 : 0;
       galleryTransition += (targetGallery - galleryTransition) * 0.05;
 
       // 2b. Gallery-Exclusive Celestial Signature: Milky Way Galactic Core & Carina Emission Nebula
@@ -456,7 +477,7 @@ export default function CosmicSpaceBackground() {
       }
 
       // Smooth crossfade tracking for About page
-      const targetAbout = isAboutRef.current ? 1 : 0;
+      const targetAbout = routesRef.current.isAbout ? 1 : 0;
       aboutTransition += (targetAbout - aboutTransition) * 0.05;
 
       // 2d. About-Exclusive Celestial Signature: Andromeda Spiral Galaxy (M31) & Equatorial Coordinate Grid
@@ -544,6 +565,276 @@ export default function CosmicSpaceBackground() {
         ctx!.arc(-galSize * 0.55, galSize * 0.45, 6, 0, Math.PI * 2);
         ctx!.fillStyle = `rgba(167, 139, 250, ${(0.20 + galPulse) * aboutTransition})`;
         ctx!.fill();
+
+        ctx!.restore();
+      }
+
+      // Smooth crossfade tracking for remaining routes
+      const routes = routesRef.current;
+      eventsTransition += ((routes.isEvents ? 1 : 0) - eventsTransition) * 0.05;
+      teamTransition += ((routes.isTeam ? 1 : 0) - teamTransition) * 0.05;
+      announcementsTransition += ((routes.isAnnouncements ? 1 : 0) - announcementsTransition) * 0.05;
+      contactTransition += ((routes.isContact ? 1 : 0) - contactTransition) * 0.05;
+
+      // 2e. Events-Exclusive Celestial Signature: Perseids Meteor Radiant & Auroral Ribbon
+      if (eventsTransition > 0.005) {
+        ctx!.save();
+
+        // Atmospheric Aurora Borealis Wave Ribbon (Undulating across the top of sky)
+        const auroraY = height * 0.16 + Math.sin(time * 0.4) * 20;
+        const auroraGrad = ctx!.createLinearGradient(0, auroraY - 80, 0, auroraY + 140);
+        auroraGrad.addColorStop(0, 'rgba(0, 0, 0, 0)');
+        auroraGrad.addColorStop(0.3, `rgba(16, 185, 129, ${(0.14 + Math.sin(time * 0.6) * 0.03) * eventsTransition})`);
+        auroraGrad.addColorStop(0.65, `rgba(139, 92, 246, ${(0.10 + Math.cos(time * 0.5) * 0.02) * eventsTransition})`);
+        auroraGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+        ctx!.fillStyle = auroraGrad;
+        ctx!.beginPath();
+        ctx!.moveTo(0, auroraY);
+        for (let x = 0; x <= width; x += 40) {
+          const waveY = auroraY + Math.sin(x * 0.004 + time * 0.8) * 35 + Math.cos(x * 0.008 + time * 0.4) * 20;
+          ctx!.lineTo(x, waveY);
+        }
+        ctx!.lineTo(width, height);
+        ctx!.lineTo(0, height);
+        ctx!.closePath();
+        ctx!.fill();
+
+        // Meteor Radiant Point (The Perseids) in Upper Right
+        const radX = width * 0.78;
+        const radY = height * 0.26 - (scrollY * 0.07 % height);
+        const radPulse = 0.5 + Math.sin(time * 2) * 0.3;
+
+        ctx!.setLineDash([3, 4]);
+        ctx!.strokeStyle = `rgba(56, 189, 248, ${(0.22 + radPulse * 0.1) * eventsTransition})`;
+        ctx!.lineWidth = 0.8;
+        ctx!.beginPath();
+        ctx!.arc(radX, radY, 18, 0, Math.PI * 2);
+        ctx!.stroke();
+
+        ctx!.beginPath();
+        ctx!.arc(radX, radY, 36, 0, Math.PI * 2);
+        ctx!.stroke();
+        ctx!.setLineDash([]);
+
+        ctx!.font = '600 8.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        if ('letterSpacing' in ctx!) {
+          (ctx as unknown as { letterSpacing: string }).letterSpacing = '1.5px';
+        }
+        ctx!.fillStyle = `rgba(56, 189, 248, ${0.28 * eventsTransition})`;
+        ctx!.textAlign = 'center';
+        ctx!.fillText('PERSEID METEOR RADIANT [ACTIVE]', radX, radY + 52);
+
+        ctx!.restore();
+      }
+
+      // 2f. Team-Exclusive Celestial Signature: Pleiades Open Star Cluster (M45) & Stellar Spectroscopy
+      if (teamTransition > 0.005) {
+        ctx!.save();
+
+        const clusterX = width * 0.76;
+        const clusterY = height * 0.34 - (scrollY * 0.08 % height);
+
+        // Reflection Nebula Cloud (Electric Ice-Blue diffuse starlight)
+        const pleiadesGrad = ctx!.createRadialGradient(clusterX, clusterY, 10, clusterX, clusterY, 140);
+        pleiadesGrad.addColorStop(0, `rgba(56, 189, 248, ${0.20 * teamTransition})`);
+        pleiadesGrad.addColorStop(0.4, `rgba(99, 102, 241, ${0.12 * teamTransition})`);
+        pleiadesGrad.addColorStop(0.8, `rgba(167, 139, 250, ${0.05 * teamTransition})`);
+        pleiadesGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+        ctx!.fillStyle = pleiadesGrad;
+        ctx!.beginPath();
+        ctx!.arc(clusterX, clusterY, 140, 0, Math.PI * 2);
+        ctx!.fill();
+
+        // The 7 Famous Stars (Alcyone, Maia, Electra, Taygeta, Celaeno, Merope, Atlas)
+        const sevenSisters = [
+          { x: 0, y: 0, r: 2.8 },
+          { x: -22, y: -18, r: 2.2 },
+          { x: -38, y: 12, r: 2.3 },
+          { x: 18, y: -26, r: 2.0 },
+          { x: 8, y: -34, r: 1.7 },
+          { x: -14, y: 22, r: 2.1 },
+          { x: 36, y: 8, r: 2.4 },
+        ];
+
+        for (let i = 0; i < sevenSisters.length; i++) {
+          const s = sevenSisters[i];
+          const px = clusterX + s.x;
+          const py = clusterY + s.y;
+          const starGlint = 0.7 + Math.sin(time * 2.2 + i * 1.3) * 0.3;
+
+          ctx!.beginPath();
+          ctx!.arc(px, py, s.r * 2.6, 0, Math.PI * 2);
+          ctx!.fillStyle = `rgba(186, 230, 253, ${(0.18 * starGlint) * teamTransition})`;
+          ctx!.fill();
+
+          ctx!.beginPath();
+          ctx!.arc(px, py, s.r, 0, Math.PI * 2);
+          ctx!.fillStyle = `rgba(255, 255, 255, ${teamTransition})`;
+          ctx!.fill();
+        }
+
+        ctx!.font = '600 8.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        if ('letterSpacing' in ctx!) {
+          (ctx as unknown as { letterSpacing: string }).letterSpacing = '1.5px';
+        }
+        ctx!.fillStyle = `rgba(56, 189, 248, ${0.28 * teamTransition})`;
+        ctx!.textAlign = 'center';
+        ctx!.fillText('PLEIADES CLUSTER [M45 // SEVEN SISTERS]', clusterX, clusterY + 54);
+
+        // Stellar Spectroscopy Dispersion Lines (Lower Left)
+        const specY = height * 0.75 - (scrollY * 0.05 % height);
+        const specX = width * 0.10;
+        const specLen = Math.min(260, width * 0.35);
+
+        const lines = [
+          { name: 'H-α 656nm', color: 'rgba(239, 68, 68, 0.45)', yOff: 0 },
+          { name: 'Na-D 589nm', color: 'rgba(245, 158, 11, 0.45)', yOff: 12 },
+          { name: 'O-III 501nm', color: 'rgba(16, 185, 129, 0.45)', yOff: 24 },
+          { name: 'H-β 486nm', color: 'rgba(6, 182, 212, 0.45)', yOff: 36 },
+          { name: 'H-γ 434nm', color: 'rgba(139, 92, 246, 0.45)', yOff: 48 },
+        ];
+
+        for (let l = 0; l < lines.length; l++) {
+          const item = lines[l];
+          ctx!.strokeStyle = item.color.replace('0.45', `${0.22 * teamTransition}`);
+          ctx!.lineWidth = 1;
+          ctx!.beginPath();
+          ctx!.moveTo(specX, specY + item.yOff);
+          ctx!.lineTo(specX + specLen, specY + item.yOff);
+          ctx!.stroke();
+
+          ctx!.font = '500 7.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+          ctx!.fillStyle = item.color.replace('0.45', `${0.32 * teamTransition}`);
+          ctx!.textAlign = 'left';
+          ctx!.fillText(item.name, specX + specLen + 8, specY + item.yOff + 3);
+        }
+
+        ctx!.fillStyle = `rgba(148, 163, 184, ${0.18 * teamTransition})`;
+        ctx!.fillText('STELLAR EMISSION SPECTRUM', specX, specY - 8);
+
+        ctx!.restore();
+      }
+
+      // 2g. Announcements-Exclusive Celestial Signature: Deep Space Pulsar Radio Beams & Ephemeris Circles
+      if (announcementsTransition > 0.005) {
+        ctx!.save();
+
+        const pulX = width * 0.72;
+        const pulY = height * 0.30 - (scrollY * 0.06 % height);
+        const pulAngle = (time * 0.3) % (Math.PI * 2);
+
+        // Sweeping Pulsar Radio Beams
+        const beamLen = Math.min(width, height) * 0.65;
+        const beamWidth = 0.28;
+
+        for (let dir = 0; dir <= 1; dir++) {
+          const baseAngle = pulAngle + (dir * Math.PI);
+          const beamGrad = ctx!.createRadialGradient(pulX, pulY, 10, pulX, pulY, beamLen);
+          beamGrad.addColorStop(0, `rgba(167, 139, 250, ${0.28 * announcementsTransition})`);
+          beamGrad.addColorStop(0.4, `rgba(108, 99, 255, ${0.12 * announcementsTransition})`);
+          beamGrad.addColorStop(0.8, `rgba(56, 189, 248, ${0.04 * announcementsTransition})`);
+          beamGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+          ctx!.fillStyle = beamGrad;
+          ctx!.beginPath();
+          ctx!.moveTo(pulX, pulY);
+          ctx!.arc(pulX, pulY, beamLen, baseAngle - beamWidth / 2, baseAngle + beamWidth / 2);
+          ctx!.closePath();
+          ctx!.fill();
+        }
+
+        // Concentric radio telemetry circles
+        ctx!.setLineDash([2, 5]);
+        ctx!.strokeStyle = `rgba(167, 139, 250, ${0.14 * announcementsTransition})`;
+        ctx!.lineWidth = 0.8;
+        const pRadii = [40, 90, 160, 240];
+        for (let pr = 0; pr < pRadii.length; pr++) {
+          ctx!.beginPath();
+          ctx!.arc(pulX, pulY, pRadii[pr], 0, Math.PI * 2);
+          ctx!.stroke();
+        }
+        ctx!.setLineDash([]);
+
+        // Pulsar Core Dot
+        ctx!.beginPath();
+        ctx!.arc(pulX, pulY, 3, 0, Math.PI * 2);
+        ctx!.fillStyle = `rgba(255, 255, 255, ${announcementsTransition})`;
+        ctx!.fill();
+
+        ctx!.font = '600 8.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        if ('letterSpacing' in ctx!) {
+          (ctx as unknown as { letterSpacing: string }).letterSpacing = '1.5px';
+        }
+        ctx!.fillStyle = `rgba(167, 139, 250, ${0.25 * announcementsTransition})`;
+        ctx!.textAlign = 'center';
+        ctx!.fillText('PULSAR RADIO EMISSION // 1420.4 MHz (21cm LINE)', pulX, pulY + 68);
+
+        ctx!.restore();
+      }
+
+      // 2h. Contact-Exclusive Celestial Signature: Sahyadri Mountain Horizon & Green Guide-Laser
+      if (contactTransition > 0.005) {
+        ctx!.save();
+
+        const ridgeY = height - 70;
+        const mountainGrad = ctx!.createLinearGradient(0, ridgeY - 60, 0, height);
+        mountainGrad.addColorStop(0, `rgba(7, 10, 20, ${0.75 * contactTransition})`);
+        mountainGrad.addColorStop(1, `rgba(4, 6, 12, ${0.95 * contactTransition})`);
+
+        ctx!.fillStyle = mountainGrad;
+        ctx!.beginPath();
+        ctx!.moveTo(0, height);
+        ctx!.lineTo(0, ridgeY);
+        ctx!.lineTo(width * 0.15, ridgeY - 35);
+        ctx!.lineTo(width * 0.32, ridgeY - 10);
+        ctx!.lineTo(width * 0.50, ridgeY - 50);
+        ctx!.lineTo(width * 0.65, ridgeY - 20);
+        ctx!.lineTo(width * 0.78, ridgeY - 65);
+        ctx!.lineTo(width * 0.88, ridgeY - 15);
+        ctx!.lineTo(width, ridgeY - 40);
+        ctx!.lineTo(width, height);
+        ctx!.closePath();
+        ctx!.fill();
+
+        // Observatory Dome on the Peak
+        const domeX = width * 0.78;
+        const domeY = ridgeY - 65;
+        ctx!.fillStyle = `rgba(15, 23, 42, ${contactTransition})`;
+        ctx!.beginPath();
+        ctx!.arc(domeX, domeY, 14, Math.PI, Math.PI * 2);
+        ctx!.fill();
+
+        // Green Guide-Laser Beam
+        const laserPulse = 0.35 + Math.sin(time * 3) * 0.08;
+        const laserGrad = ctx!.createLinearGradient(domeX, domeY, domeX - 80, 0);
+        laserGrad.addColorStop(0, `rgba(52, 211, 153, ${(0.6 + laserPulse) * contactTransition})`);
+        laserGrad.addColorStop(0.5, `rgba(16, 185, 129, ${(0.3 + laserPulse) * contactTransition})`);
+        laserGrad.addColorStop(1, 'rgba(16, 185, 129, 0)');
+
+        ctx!.strokeStyle = laserGrad;
+        ctx!.lineWidth = 2.2;
+        ctx!.lineCap = 'round';
+        ctx!.beginPath();
+        ctx!.moveTo(domeX, domeY - 5);
+        ctx!.lineTo(domeX - 90, 0);
+        ctx!.stroke();
+
+        ctx!.strokeStyle = `rgba(255, 255, 255, ${0.7 * contactTransition})`;
+        ctx!.lineWidth = 0.8;
+        ctx!.beginPath();
+        ctx!.moveTo(domeX, domeY - 5);
+        ctx!.lineTo(domeX - 90, 0);
+        ctx!.stroke();
+
+        ctx!.font = '600 8.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        if ('letterSpacing' in ctx!) {
+          (ctx as unknown as { letterSpacing: string }).letterSpacing = '1.5px';
+        }
+        ctx!.fillStyle = `rgba(52, 211, 153, ${0.28 * contactTransition})`;
+        ctx!.textAlign = 'right';
+        ctx!.fillText('AMITY OBSERVATORY BEACON // 18.99° N, 73.12° E', domeX - 25, domeY + 25);
 
         ctx!.restore();
       }

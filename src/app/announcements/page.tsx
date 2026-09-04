@@ -24,7 +24,7 @@ export default function AnnouncementsPage() {
   });
 
   return (
-    <div className="bg-[#0B0F19] text-white min-h-screen">
+    <div className="bg-transparent text-white min-h-screen relative">
       {/* Cinematic Page Hero Header */}
       <PageHeroHeader
         breadcrumbs={[

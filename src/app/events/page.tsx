@@ -28,7 +28,7 @@ export default function EventsPage() {
       : GALLERY_DATA.filter((item) => item.category === activeCategory).slice(0, 6);
 
   return (
-    <div className="py-10 lg:py-16 bg-[#0B0F19]">
+    <div className="py-10 lg:py-16 bg-transparent relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <div className="mb-6">
