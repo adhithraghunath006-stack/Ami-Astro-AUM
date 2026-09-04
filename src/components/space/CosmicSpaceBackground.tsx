@@ -153,10 +153,13 @@ export default function CosmicSpaceBackground() {
   const pathname = usePathname();
   const isGallery = pathname?.startsWith('/gallery') ?? false;
   const isGalleryRef = useRef(isGallery);
+  const isAbout = pathname?.startsWith('/about') ?? false;
+  const isAboutRef = useRef(isAbout);
 
   useEffect(() => {
     isGalleryRef.current = isGallery;
-  }, [isGallery]);
+    isAboutRef.current = isAbout;
+  }, [isGallery, isAbout]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -317,6 +320,7 @@ export default function CosmicSpaceBackground() {
 
     let time = 0;
     let galleryTransition = isGalleryRef.current ? 1 : 0;
+    let aboutTransition = isAboutRef.current ? 1 : 0;
 
     function render() {
       if (!isVisible) {
@@ -447,6 +451,99 @@ export default function CosmicSpaceBackground() {
 
         ctx!.fillStyle = riftGrad;
         ctx!.fillRect(0, 0, width, height);
+
+        ctx!.restore();
+      }
+
+      // Smooth crossfade tracking for About page
+      const targetAbout = isAboutRef.current ? 1 : 0;
+      aboutTransition += (targetAbout - aboutTransition) * 0.05;
+
+      // 2d. About-Exclusive Celestial Signature: Andromeda Spiral Galaxy (M31) & Equatorial Coordinate Grid
+      if (aboutTransition > 0.005) {
+        ctx!.save();
+
+        // A. Equatorial Celestial Coordinate Grid Lines (Star Atlas / Planetarium)
+        ctx!.lineWidth = 0.7;
+        ctx!.setLineDash([3, 6]);
+        ctx!.strokeStyle = `rgba(167, 139, 250, ${0.11 * aboutTransition})`;
+
+        const gridCenterX = width * 0.45;
+        const gridCenterY = height * 0.40 - (scrollY * 0.06 % height);
+
+        // Declination concentric arcs
+        const radii = [140, 280, 440, 620];
+        for (let rIdx = 0; rIdx < radii.length; rIdx++) {
+          const r = radii[rIdx];
+          ctx!.beginPath();
+          ctx!.arc(gridCenterX, gridCenterY, r, -Math.PI * 0.9, Math.PI * 0.1);
+          ctx!.stroke();
+        }
+
+        // Right ascension radial meridian lines
+        for (let a = -4; a <= 4; a++) {
+          const rad = (a * 0.28) - Math.PI * 0.4;
+          ctx!.beginPath();
+          ctx!.moveTo(gridCenterX + Math.cos(rad) * 110, gridCenterY + Math.sin(rad) * 110);
+          ctx!.lineTo(gridCenterX + Math.cos(rad) * 650, gridCenterY + Math.sin(rad) * 650);
+          ctx!.stroke();
+        }
+        ctx!.setLineDash([]);
+
+        // Coordinate Labels
+        ctx!.font = '500 8.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        if ('letterSpacing' in ctx!) {
+          (ctx as unknown as { letterSpacing: string }).letterSpacing = '1.5px';
+        }
+        ctx!.fillStyle = `rgba(167, 139, 250, ${0.18 * aboutTransition})`;
+        ctx!.fillText('RA 00h 42m 44s  •  DEC +41° 16\' 09"', width * 0.12, 120);
+
+        ctx!.fillStyle = `rgba(148, 163, 184, ${0.14 * aboutTransition})`;
+        ctx!.fillText('EQUATORIAL CELESTIAL GRID  [M31 SECTOR]', width * 0.12, 134);
+
+        // B. Andromeda (M31) Spiral Galaxy (Tilted Elliptical Disk)
+        const galX = width * 0.32;
+        const galY = height * 0.32 - (scrollY * 0.08 % height);
+        const galScale = Math.min(1.2, Math.max(0.75, width / 1100));
+        const galSize = 180 * galScale;
+        const galPulse = Math.sin(time * 0.5) * 0.02;
+
+        ctx!.translate(galX, galY);
+        ctx!.rotate(-0.54); // ~ -31 degrees galactic tilt
+
+        // Extended Outer Galactic Disk (Cyan/Violet Starlight)
+        ctx!.scale(1, 0.44); // 3D foreshortened inclined view
+
+        const diskGrad = ctx!.createRadialGradient(0, 0, 15, 0, 0, galSize);
+        diskGrad.addColorStop(0, `rgba(254, 240, 138, ${(0.26 + galPulse) * aboutTransition})`); // Dense golden nucleus
+        diskGrad.addColorStop(0.2, `rgba(251, 146, 60, ${(0.18 + galPulse) * aboutTransition})`); // Core bulge
+        diskGrad.addColorStop(0.48, `rgba(167, 139, 250, ${(0.13 + galPulse) * aboutTransition})`); // Spiral arms violet
+        diskGrad.addColorStop(0.75, `rgba(56, 189, 248, ${(0.07 + galPulse) * aboutTransition})`);  // Outer arm cyan
+        diskGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+        ctx!.fillStyle = diskGrad;
+        ctx!.beginPath();
+        ctx!.arc(0, 0, galSize, 0, Math.PI * 2);
+        ctx!.fill();
+
+        // Spiral arm dust lanes (subtle dark ellipse ring)
+        ctx!.beginPath();
+        ctx!.arc(0, 0, galSize * 0.52, 0, Math.PI * 2);
+        ctx!.strokeStyle = `rgba(6, 8, 16, ${(0.22 + galPulse) * aboutTransition})`;
+        ctx!.lineWidth = 8;
+        ctx!.stroke();
+
+        // Satellite Dwarf Galaxy M32 (Compact bright cluster nearby)
+        ctx!.beginPath();
+        ctx!.arc(galSize * 0.45, -galSize * 0.35, 3.5, 0, Math.PI * 2);
+        ctx!.fillStyle = `rgba(254, 243, 199, ${(0.45 + galPulse) * aboutTransition})`;
+        ctx!.fill();
+
+        // Satellite Dwarf Galaxy M110 (Diffuse oval)
+        ctx!.beginPath();
+        ctx!.arc(-galSize * 0.55, galSize * 0.45, 6, 0, Math.PI * 2);
+        ctx!.fillStyle = `rgba(167, 139, 250, ${(0.20 + galPulse) * aboutTransition})`;
+        ctx!.fill();
 
         ctx!.restore();
       }

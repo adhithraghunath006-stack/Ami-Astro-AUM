@@ -105,7 +105,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="bg-[#0B0F19] text-white min-h-screen">
+    <div className="bg-transparent text-white min-h-screen relative">
       {/* Cinematic Page Hero Header */}
       <PageHeroHeader
         breadcrumbs={[
@@ -136,7 +136,7 @@ export default function AboutPage() {
                 return (
                   <div
                     key={idx}
-                    className="flex items-start gap-3.5 p-4 rounded-xl bg-[#12182B] border border-[#1E293B] hover:border-[#6C63FF]/50 transition-colors group"
+                    className="flex items-start gap-3.5 p-4 rounded-xl cosmic-card border border-[#1E293B]/70 hover:border-[#6C63FF]/50 transition-colors group"
                   >
                     <div className="w-9 h-9 rounded-lg bg-[#6C63FF]/15 border border-[#6C63FF]/30 flex items-center justify-center text-[#A78BFA] group-hover:text-white group-hover:bg-[#6C63FF] transition-all shrink-0 mt-0.5">
                       <Icon className="w-4 h-4" />
