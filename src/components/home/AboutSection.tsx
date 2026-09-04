@@ -66,23 +66,6 @@ export default function AboutSection() {
             </div>
           </div>
         </div>
-
-        {/* 4 Stats Cards Row (matching reference) */}
-        <div className="mt-16 sm:mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-          {CLUB_INFO.stats.map((stat, index) => (
-            <div
-              key={index}
-              className="cosmic-card rounded-xl p-6 sm:p-8 flex flex-col items-center text-center group hover:border-[#6C63FF]/50 transition-all duration-300"
-            >
-              <span className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-2 group-hover:text-[#A78BFA] transition-colors">
-                {stat.value}
-              </span>
-              <span className="text-xs sm:text-sm font-semibold text-[#94A3B8] tracking-wider uppercase">
-                {stat.label}
-              </span>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
