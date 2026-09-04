@@ -160,7 +160,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-12 pt-6 border-t border-[#1E293B] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#64748B]">
-          <p>© 2025 AMI-ASTRO Astronomy Club. All Rights Reserved.</p>
+          <p>© 2026 AMI-ASTRO. All Rights Reserved.</p>
           <div className="flex items-center gap-4">
             <Link href="/contact#privacy" className="hover:text-[#94A3B8] transition-colors">
               Privacy Policy
