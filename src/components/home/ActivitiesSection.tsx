@@ -16,9 +16,12 @@ export default function ActivitiesSection() {
   return (
     <section
       aria-label="What We Do - Activities"
-      className="py-20 lg:py-28 bg-[#080C16] relative border-t border-[#1E293B]/60"
+      className="py-20 lg:py-28 bg-transparent relative border-t border-[#1E293B]/40 overflow-hidden"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Ambient Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#6C63FF]/08 blur-[140px] rounded-full pointer-events-none" />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-14 lg:mb-16">
           <div className="inline-flex items-center gap-2 mb-3">

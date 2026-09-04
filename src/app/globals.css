@@ -49,18 +49,28 @@ body {
 }
 
 .cosmic-card {
-  background: rgba(18, 24, 43, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid #1e293b;
+  background: rgba(14, 20, 38, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(30, 41, 59, 0.7);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
   transform: translateZ(0);
   will-change: transform;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
 }
 
 .cosmic-card:hover {
-  border-color: #2d3b55;
-  transform: translate3d(0, -2px, 0);
+  background: rgba(20, 28, 54, 0.75);
+  border-color: rgba(108, 99, 255, 0.45);
+  box-shadow: 0 12px 40px rgba(108, 99, 255, 0.15), 0 0 20px rgba(108, 99, 255, 0.1);
+  transform: translate3d(0, -3px, 0);
+}
+
+.cosmic-glass-panel {
+  background: rgba(11, 15, 25, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(30, 41, 59, 0.6);
 }
 
 .cosmic-badge {

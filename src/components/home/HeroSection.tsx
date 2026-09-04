@@ -28,7 +28,7 @@ export default function HeroSection() {
       />
       <div
         aria-hidden="true"
-        className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0B0F19] via-[#0B0F19]/60 to-transparent pointer-events-none z-10"
+        className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-transparent via-[#070913]/50 to-transparent pointer-events-none z-10"
       />
 
       {/* 3. Hero Content Container */}

@@ -8,8 +8,12 @@ export default function AboutSection() {
   return (
     <section
       aria-label="About AMI-ASTRO Preview"
-      className="py-20 lg:py-28 bg-[#0B0F19] relative overflow-hidden border-t border-[#1E293B]/60"
+      className="py-20 lg:py-28 bg-transparent relative overflow-hidden border-t border-[#1E293B]/40"
     >
+      {/* Subtle Ambient Cosmic Glows */}
+      <div className="absolute top-1/4 -left-40 w-96 h-96 bg-[#6C63FF]/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-40 w-96 h-96 bg-[#38BDF8]/10 blur-[120px] rounded-full pointer-events-none" />
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
           {/* Left Text Column (6 cols) */}
