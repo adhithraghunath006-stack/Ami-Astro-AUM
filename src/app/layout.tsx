@@ -21,8 +21,13 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'AMI-ASTRO Club' }],
   icons: {
-    icon: '/logo.jpg',
-    apple: '/logo.jpg',
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/logo.png', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-icon.png' },
+    ],
   },
   openGraph: {
     title: 'AMI-ASTRO | Astronomy Club, Amity University Mumbai',
