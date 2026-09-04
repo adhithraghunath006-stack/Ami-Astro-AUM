@@ -27,7 +27,7 @@ export const CLUB_INFO = {
   },
 
   socials: {
-    instagram: 'https://instagram.com',
+    instagram: 'https://www.instagram.com/ami_astro_mumbai',
     youtube: 'https://youtube.com',
     discord: 'https://discord.com',
     email: 'mailto:amiastro@amity.edu',

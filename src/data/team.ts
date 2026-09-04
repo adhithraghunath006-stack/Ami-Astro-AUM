@@ -27,7 +27,7 @@ export const TEAM_MEMBERS_DATA: TeamMember[] = [
     socials: {
       linkedin: 'https://linkedin.com',
       github: 'https://github.com',
-      instagram: 'https://instagram.com',
+      instagram: 'https://www.instagram.com/ami_astro_mumbai',
       email: 'mailto:aarav.deshmukh@amity.edu',
     },
   },
@@ -42,7 +42,7 @@ export const TEAM_MEMBERS_DATA: TeamMember[] = [
     specialization: 'Planetary Atmospheres & Variable Stars',
     socials: {
       linkedin: 'https://linkedin.com',
-      instagram: 'https://instagram.com',
+      instagram: 'https://www.instagram.com/ami_astro_mumbai',
       email: 'mailto:ananya.iyer@amity.edu',
     },
   },
@@ -57,7 +57,7 @@ export const TEAM_MEMBERS_DATA: TeamMember[] = [
     specialization: 'Optical Telescope Mechanics & Collimation',
     socials: {
       linkedin: 'https://linkedin.com',
-      instagram: 'https://instagram.com',
+      instagram: 'https://www.instagram.com/ami_astro_mumbai',
       email: 'mailto:rohan.kulkarni@amity.edu',
     },
   },
@@ -73,7 +73,7 @@ export const TEAM_MEMBERS_DATA: TeamMember[] = [
     socials: {
       linkedin: 'https://linkedin.com',
       github: 'https://github.com',
-      instagram: 'https://instagram.com',
+      instagram: 'https://www.instagram.com/ami_astro_mumbai',
       email: 'mailto:tanvi.joshi@amity.edu',
     },
   },
@@ -103,7 +103,7 @@ export const TEAM_MEMBERS_DATA: TeamMember[] = [
     specialization: 'Field Scouting & Bortle Scale Analysis',
     socials: {
       linkedin: 'https://linkedin.com',
-      instagram: 'https://instagram.com',
+      instagram: 'https://www.instagram.com/ami_astro_mumbai',
       email: 'mailto:ishaan.patil@amity.edu',
     },
   },
@@ -118,7 +118,7 @@ export const TEAM_MEMBERS_DATA: TeamMember[] = [
     specialization: 'Science Communication & Astro-Journalism',
     socials: {
       linkedin: 'https://linkedin.com',
-      instagram: 'https://instagram.com',
+      instagram: 'https://www.instagram.com/ami_astro_mumbai',
       email: 'mailto:sneha.nair@amity.edu',
     },
   },
