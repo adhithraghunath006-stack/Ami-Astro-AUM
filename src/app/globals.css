@@ -51,13 +51,16 @@ body {
 .cosmic-card {
   background: rgba(18, 24, 43, 0.85);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid #1e293b;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateZ(0);
+  will-change: transform;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .cosmic-card:hover {
   border-color: #2d3b55;
-  transform: translateY(-2px);
+  transform: translate3d(0, -2px, 0);
 }
 
 .cosmic-badge {
@@ -72,6 +75,7 @@ body {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(30, 41, 59, 0.6);
+  transform: translateZ(0);
 }
 
 /* Scrollbar styling */
@@ -111,43 +115,43 @@ body {
   background-size: 800px 500px;
 }
 
-/* Living Cosmos Dynamic Keyframes */
+/* Living Cosmos Dynamic Keyframes (Hardware Accelerated) */
 @keyframes spinSlow {
   from {
-    transform: rotate(0deg);
+    transform: rotate(0deg) translateZ(0);
   }
   to {
-    transform: rotate(360deg);
+    transform: rotate(360deg) translateZ(0);
   }
 }
 
 @keyframes reverseSpinSlow {
   from {
-    transform: rotate(360deg);
+    transform: rotate(360deg) translateZ(0);
   }
   to {
-    transform: rotate(0deg);
+    transform: rotate(0deg) translateZ(0);
   }
 }
 
 @keyframes solarBreathing {
   0%, 100% {
-    transform: scale(0.95);
+    transform: scale(0.95) translateZ(0);
     opacity: 0.28;
   }
   50% {
-    transform: scale(1.08);
+    transform: scale(1.08) translateZ(0);
     opacity: 0.45;
   }
 }
 
 @keyframes pulseSlow {
   0%, 100% {
-    transform: scale(0.96);
+    transform: scale(0.96) translateZ(0);
     opacity: 0.8;
   }
   50% {
-    transform: scale(1.06);
+    transform: scale(1.06) translateZ(0);
     opacity: 1;
   }
 }
@@ -163,10 +167,10 @@ body {
 
 @keyframes subtleOrbitFloat {
   0%, 100% {
-    transform: rotate(-21deg) scale(1);
+    transform: rotate(-21deg) scale(1) translateZ(0);
   }
   50% {
-    transform: rotate(-21deg) scale(1.015);
+    transform: rotate(-21deg) scale(1.015) translateZ(0);
   }
 }
 
@@ -271,5 +275,6 @@ body {
   background: linear-gradient(90deg, rgba(255, 255, 255, 0.95), rgba(167, 139, 250, 0.8), transparent);
   border-radius: 9999px;
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  will-change: transform, opacity;
   animation: shootingStar 7s ease-out infinite;
 }

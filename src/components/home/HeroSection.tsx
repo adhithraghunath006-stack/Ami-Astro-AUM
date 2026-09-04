@@ -1,32 +1,12 @@
 'use client';
 
 import React from 'react';
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { ArrowRight, ChevronDown, Mail } from 'lucide-react';
 import { InstagramIcon, YoutubeIcon, DiscordIcon } from '@/components/ui/SocialIcons';
 import { CLUB_INFO } from '@/data/clubInfo';
 import Button from '@/components/ui/Button';
-
-// Dynamically load the LivingCosmos continuous motion engine
-const LivingCosmos = dynamic(
-  () => import('./living-cosmos/LivingCosmos'),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="absolute inset-0 select-none bg-[#080B14]">
-        <Image
-          src="/images/temp/hero-solar-system-panoramic.jpg"
-          alt="Photorealistic Solar System"
-          fill
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
-        />
-      </div>
-    ),
-  }
-);
+import LivingCosmos from './living-cosmos/LivingCosmos';
 
 export default function HeroSection() {
   return (
