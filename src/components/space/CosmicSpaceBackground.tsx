@@ -41,6 +41,112 @@ interface Meteor {
   color: string;
 }
 
+interface ConstellationStar {
+  x: number;
+  y: number;
+  radius: number;
+  colorRgb: string;
+  isAnchor?: boolean;
+}
+
+interface ConstellationDef {
+  name: string;
+  latinName: string;
+  relX: number;
+  relY: number;
+  depth: number;
+  scale: number;
+  stars: ConstellationStar[];
+  lines: [number, number][];
+}
+
+const CONSTELLATIONS: ConstellationDef[] = [
+  {
+    name: 'ORION',
+    latinName: 'The Hunter',
+    relX: 0.82,
+    relY: 0.28,
+    depth: 0.45,
+    scale: 1,
+    stars: [
+      { x: -38, y: -50, radius: 2.6, colorRgb: '251, 146, 60', isAnchor: true }, // Betelgeuse (Orange Supergiant)
+      { x: 38, y: -44, radius: 2.1, colorRgb: '224, 231, 255', isAnchor: true },  // Bellatrix
+      { x: 0, y: -66, radius: 1.5, colorRgb: '255, 255, 255' },                   // Meissa
+      { x: -18, y: 0, radius: 1.9, colorRgb: '167, 139, 250' },                   // Alnitak (Belt)
+      { x: 0, y: 2, radius: 2.0, colorRgb: '255, 255, 255', isAnchor: true },     // Alnilam (Belt)
+      { x: 18, y: 4, radius: 1.9, colorRgb: '56, 189, 248' },                     // Mintaka (Belt)
+      { x: -30, y: 56, radius: 2.0, colorRgb: '224, 231, 255' },                  // Saiph
+      { x: 34, y: 60, radius: 2.7, colorRgb: '56, 189, 248', isAnchor: true },    // Rigel (Blue Supergiant)
+    ],
+    lines: [
+      [2, 0], [2, 1], // Head to shoulders
+      [0, 1],         // Shoulder cross
+      [0, 3], [1, 5], // Shoulders to belt
+      [3, 4], [4, 5], // Orion's Belt
+      [3, 6], [5, 7], // Belt to feet
+      [6, 7],         // Lower boundary
+    ],
+  },
+  {
+    name: 'CASSIOPEIA',
+    latinName: 'The Queen (W)',
+    relX: 0.16,
+    relY: 0.22,
+    depth: 0.35,
+    scale: 0.95,
+    stars: [
+      { x: -54, y: 14, radius: 1.8, colorRgb: '224, 231, 255' },
+      { x: -26, y: -18, radius: 2.1, colorRgb: '255, 255, 255', isAnchor: true },
+      { x: 2, y: 16, radius: 2.3, colorRgb: '167, 139, 250', isAnchor: true },
+      { x: 30, y: -22, radius: 2.4, colorRgb: '251, 191, 36', isAnchor: true },
+      { x: 58, y: 10, radius: 2.0, colorRgb: '224, 231, 255' },
+    ],
+    lines: [
+      [0, 1], [1, 2], [2, 3], [3, 4],
+    ],
+  },
+  {
+    name: 'URSA MAJOR',
+    latinName: 'The Big Dipper / Saptarishi',
+    relX: 0.18,
+    relY: 0.74,
+    depth: 0.5,
+    scale: 0.95,
+    stars: [
+      { x: -72, y: 32, radius: 2.1, colorRgb: '56, 189, 248' },
+      { x: -46, y: 20, radius: 2.2, colorRgb: '255, 255, 255' },
+      { x: -22, y: 14, radius: 2.3, colorRgb: '224, 231, 255', isAnchor: true },
+      { x: 0, y: 10, radius: 1.7, colorRgb: '167, 139, 250' },
+      { x: -2, y: 38, radius: 2.0, colorRgb: '224, 231, 255' },
+      { x: 34, y: 36, radius: 2.2, colorRgb: '255, 255, 255', isAnchor: true },
+      { x: 36, y: 6, radius: 2.4, colorRgb: '251, 191, 36', isAnchor: true },
+    ],
+    lines: [
+      [0, 1], [1, 2], [2, 3],
+      [3, 4], [4, 5], [5, 6], [6, 3],
+    ],
+  },
+  {
+    name: 'CYGNUS',
+    latinName: 'The Northern Cross',
+    relX: 0.82,
+    relY: 0.76,
+    depth: 0.4,
+    scale: 0.95,
+    stars: [
+      { x: 0, y: -52, radius: 2.6, colorRgb: '224, 231, 255', isAnchor: true },
+      { x: 0, y: 0, radius: 2.2, colorRgb: '255, 255, 255', isAnchor: true },
+      { x: 0, y: 52, radius: 2.0, colorRgb: '251, 191, 36' },
+      { x: -48, y: -6, radius: 2.0, colorRgb: '167, 139, 250' },
+      { x: 48, y: -6, radius: 2.0, colorRgb: '56, 189, 248' },
+    ],
+    lines: [
+      [0, 1], [1, 2],
+      [3, 1], [1, 4],
+    ],
+  },
+];
+
 export default function CosmicSpaceBackground() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -249,8 +355,90 @@ export default function CosmicSpaceBackground() {
       neb2.addColorStop(0, `rgba(56, 189, 248, ${0.11 - nebulaPulse})`);
       neb2.addColorStop(0.6, 'rgba(15, 43, 60, 0.05)');
       neb2.addColorStop(1, 'rgba(0, 0, 0, 0)');
-      ctx!.fillStyle = neb2;
-      ctx!.fillRect(0, 0, width, height);
+      // 2b. Render Famous Celestial Constellations
+      const responsiveScale = Math.min(1.15, Math.max(0.7, width / 1200));
+
+      for (let c = 0; c < CONSTELLATIONS.length; c++) {
+        const constel = CONSTELLATIONS[c];
+
+        // Parallax vertical movement with scroll
+        const parallaxOffset = scrollY * (0.04 + constel.depth * 0.22);
+        const originY = ((constel.relY * height) - (parallaxOffset % height) + height) % height;
+        const originX = constel.relX * width;
+
+        if (originY < -150 || originY > height + 150) continue;
+
+        const cScale = constel.scale * responsiveScale;
+        const linePulse = 0.16 + Math.sin(time * 0.7 + c * 1.5) * 0.05;
+
+        ctx!.save();
+        ctx!.translate(originX, originY);
+
+        // Faint connecting celestial lines
+        ctx!.lineWidth = 0.9;
+        ctx!.setLineDash([3, 4]);
+        ctx!.strokeStyle = `rgba(167, 139, 250, ${linePulse})`;
+
+        for (let l = 0; l < constel.lines.length; l++) {
+          const [i1, i2] = constel.lines[l];
+          const s1 = constel.stars[i1];
+          const s2 = constel.stars[i2];
+
+          ctx!.beginPath();
+          ctx!.moveTo(s1.x * cScale, s1.y * cScale);
+          ctx!.lineTo(s2.x * cScale, s2.y * cScale);
+          ctx!.stroke();
+        }
+        ctx!.setLineDash([]);
+
+        // Draw Constellation Stars
+        for (let s = 0; s < constel.stars.length; s++) {
+          const cStar = constel.stars[s];
+          const px = cStar.x * cScale;
+          const py = cStar.y * cScale;
+          const starTwinkle = 0.7 + Math.sin(time * 1.6 + s * 1.2 + c * 2) * 0.3;
+          const r = cStar.radius * (0.9 + starTwinkle * 0.25);
+
+          // Star Halo
+          ctx!.beginPath();
+          ctx!.arc(px, py, r * 2.4, 0, Math.PI * 2);
+          ctx!.fillStyle = `rgba(${cStar.colorRgb}, ${0.12 * starTwinkle})`;
+          ctx!.fill();
+
+          // Star Core
+          ctx!.beginPath();
+          ctx!.arc(px, py, r, 0, Math.PI * 2);
+          ctx!.fillStyle = `rgba(${cStar.colorRgb}, ${Math.min(1, 0.65 + starTwinkle * 0.35)})`;
+          ctx!.fill();
+
+          // Anchor star target ring
+          if (cStar.isAnchor) {
+            ctx!.beginPath();
+            ctx!.arc(px, py, r + 2.5, 0, Math.PI * 2);
+            ctx!.strokeStyle = `rgba(167, 139, 250, ${0.18 + starTwinkle * 0.12})`;
+            ctx!.lineWidth = 0.6;
+            ctx!.stroke();
+          }
+        }
+
+        // Draw Constellation Name Label
+        ctx!.font = '600 9px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        if ('letterSpacing' in ctx!) {
+          (ctx as unknown as { letterSpacing: string }).letterSpacing = '2px';
+        }
+        ctx!.fillStyle = `rgba(167, 139, 250, ${linePulse * 1.5})`;
+        ctx!.textAlign = 'center';
+        ctx!.fillText(constel.name, 0, 75 * cScale);
+
+        ctx!.font = '400 8px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        if ('letterSpacing' in ctx!) {
+          (ctx as unknown as { letterSpacing: string }).letterSpacing = '1px';
+        }
+        ctx!.fillStyle = `rgba(148, 163, 184, ${linePulse * 1.1})`;
+        ctx!.fillText(constel.latinName, 0, 87 * cScale);
+
+        ctx!.restore();
+      }
 
       // 3. Render Multi-Layered Stars with Natural Atmospheric Scintillation
       const starLen = stars.length;
