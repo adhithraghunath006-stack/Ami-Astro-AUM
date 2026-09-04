@@ -17,7 +17,7 @@ export const EVENTS_DATA: EventItem[] = [
       'An evening of telescope observations, celestial talks and cosmic conversations.',
     fullDesc:
       "Join us for an immersive evening under the stars on the open sports ground. We'll explore the crater terraces of the Moon, the golden ring systems of Saturn, and bright deep-sky nebulae through our 10\" Dobsonian and tracking refractor telescopes.",
-    bannerImage: '/images/temp/event-gathering.svg',
+    bannerImage: '/images/event-gathering.jpg',
     category: 'Stargazing',
     registrationOpen: true,
     highlights: [
@@ -62,7 +62,7 @@ export const EVENTS_DATA: EventItem[] = [
       'Witness the annual meteor shower streak across the dark hills above Panvel.',
     fullDesc:
       'Experience the thrilling spectacle of bright meteor fireballs radiating across the autumn night sky. Our astronomy leads will guide you through radiant point triangulation, visual meteor rate tallying for citizen science, and wide-angle night-sky timelapses.',
-    bannerImage: '/images/temp/event-meteor.svg',
+    bannerImage: '/images/event-meteor.jpg',
     category: 'Expedition',
     registrationOpen: true,
     highlights: [
@@ -106,7 +106,7 @@ export const EVENTS_DATA: EventItem[] = [
       'Learn deep-sky imaging, camera sensor ISO calibration, and stacked image post-processing.',
     fullDesc:
       'A practical hands-on masterclass covering DSLR/mirrorless astro-imaging, telescope T-ring mounting, equatorial tracking mounts, calibration frames (darks, flats, biases), stacking algorithms in DeepSkyStacker and Siril, and color stretching curves for nebulae.',
-    bannerImage: '/images/temp/event-astrophoto.svg',
+    bannerImage: '/images/event-astrophoto.jpg',
     category: 'Workshop',
     registrationOpen: true,
     highlights: [
@@ -149,7 +149,7 @@ export const EVENTS_DATA: EventItem[] = [
       'An all-night observation marathon to spot and sketch nebulae, galaxies, and star clusters.',
     fullDesc:
       'The ultimate observational test for amateur astronomers: hunting as many Messier deep-sky objects as possible from dusk till dawn using our 8" and 10" Dobsonian optical reflectors under pristine Bortle 3 skies.',
-    bannerImage: '/images/temp/event-marathon.svg',
+    bannerImage: '/images/event-marathon.jpg',
     category: 'Observation',
     registrationOpen: true,
     highlights: [
@@ -193,7 +193,7 @@ export const EVENTS_DATA: EventItem[] = [
       'High-magnification lunar crater exploration and smartphone astrophotography session.',
     fullDesc:
       'Celebrate the brightest supermoon of the year! Through high-magnification lunar filters and Barlow lenses, we will resolve mountain peaks, crater rilles, and the Copernicus crater ray system along the lunar terminator line.',
-    bannerImage: '/images/temp/event-gathering.svg',
+    bannerImage: '/images/gallery-moon.jpg',
     category: 'Stargazing',
     registrationOpen: true,
     highlights: [
@@ -234,7 +234,7 @@ export const EVENTS_DATA: EventItem[] = [
       'Safe daytime solar observations featuring white-light and hydrogen-alpha filtered telescopes.',
     fullDesc:
       'Explore our home star! Using certified Baader solar filters and specialized hydrogen-alpha Coronado scopes, students can safely observe solar prominences leaping from the solar limb, magnetic sunspot groups, and solar flare activity in real time.',
-    bannerImage: '/images/temp/event-astrophoto.svg',
+    bannerImage: '/images/about-stargazers.jpg',
     category: 'Workshop',
     registrationOpen: true,
     highlights: [

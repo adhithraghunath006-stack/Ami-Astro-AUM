@@ -46,7 +46,7 @@ export default function AboutSection() {
           <div className="lg:col-span-6">
             <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-2xl overflow-hidden border border-[#1E293B] shadow-[0_0_40px_rgba(108,99,255,0.15)] group">
               <Image
-                src="/images/temp/about-silhouette.svg"
+                src="/images/about-stargazers.jpg"
                 alt="Stargazers with telescope observing starry night sky"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"

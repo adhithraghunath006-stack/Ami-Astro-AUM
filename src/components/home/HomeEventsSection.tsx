@@ -39,7 +39,7 @@ export default function HomeEventsSection() {
             href="/events"
             className="inline-flex items-center gap-1.5 text-xs font-bold tracking-wider text-[#A78BFA] hover:text-white uppercase transition-colors shrink-0"
           >
-            <span>VIEW ALL 6 EVENTS</span>
+            <span>VIEW FULL CALENDAR</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

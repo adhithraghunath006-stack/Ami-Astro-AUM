@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Calendar, Clock, User, ArrowRight, Tag, Search } from 'lucide-react';
 import { ANNOUNCEMENTS_DATA } from '@/data/announcements';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
+import PageHeroHeader from '@/components/layout/PageHeroHeader';
 
 export default function AnnouncementsPage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -23,33 +24,17 @@ export default function AnnouncementsPage() {
   });
 
   return (
-    <div className="py-10 lg:py-16 bg-[#0B0F19]">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumb */}
-        <div className="mb-6">
-          <Breadcrumbs
-            items={[
-              { label: 'HOME', href: '/' },
-              { label: 'ANNOUNCEMENTS', href: '/announcements' },
-            ]}
-          />
-        </div>
-
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div>
-            <span className="text-xs font-bold tracking-[0.2em] text-[#A78BFA] uppercase block mb-2">
-              DISPATCHES & DISCOVERIES
-            </span>
-            <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-              Announcements & Blog
-            </h1>
-            <p className="text-sm sm:text-base text-[#94A3B8] mt-2 max-w-xl">
-              Observation bulletins, celestial event forecasts, equipment updates, and educational astronomy guides from AMI-ASTRO.
-            </p>
-          </div>
-
-          {/* Search Input */}
+    <div className="bg-[#0B0F19] text-white min-h-screen">
+      {/* Cinematic Page Hero Header */}
+      <PageHeroHeader
+        breadcrumbs={[
+          { label: 'HOME', href: '/' },
+          { label: 'ANNOUNCEMENTS', href: '/announcements' },
+        ]}
+        eyebrow="DISPATCHES & DISCOVERIES"
+        title="Announcements & Blog"
+        description="Observation bulletins, celestial event forecasts, equipment guides, and educational astrophysics dispatches from the AMI-ASTRO council."
+        action={
           <div className="relative w-full sm:w-72">
             <Search className="w-4 h-4 text-[#64748B] absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
@@ -57,10 +42,13 @@ export default function AnnouncementsPage() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search dispatches..."
-              className="w-full pl-9 pr-4 py-2 bg-[#12182B] border border-[#1E293B] rounded-xl text-xs text-white placeholder-[#64748B] focus:outline-none focus:border-[#6C63FF]"
+              className="w-full pl-9 pr-4 py-2.5 bg-[#12182B] border border-[#1E293B] rounded-xl text-xs text-white placeholder-[#64748B] focus:outline-none focus:border-[#6C63FF] transition-colors"
             />
           </div>
-        </div>
+        }
+      />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-20">
 
         {/* Tags Row */}
         <div className="flex items-center gap-2 mb-10 overflow-x-auto pb-2">

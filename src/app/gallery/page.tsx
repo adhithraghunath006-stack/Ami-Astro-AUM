@@ -7,6 +7,7 @@ import { GALLERY_DATA } from '@/data/gallery';
 import { GalleryCategory, GalleryItem } from '@/types';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import LightboxModal from '@/components/gallery/LightboxModal';
+import PageHeroHeader from '@/components/layout/PageHeroHeader';
 
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState<GalleryCategory>('all');
@@ -46,34 +47,18 @@ export default function GalleryPage() {
   };
 
   return (
-    <div className="py-10 lg:py-16 bg-[#0B0F19]">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumb */}
-        <div className="mb-6">
-          <Breadcrumbs
-            items={[
-              { label: 'HOME', href: '/' },
-              { label: 'GALLERY', href: '/gallery' },
-            ]}
-          />
-        </div>
-
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div>
-            <span className="text-xs font-bold tracking-[0.2em] text-[#A78BFA] uppercase block mb-2">
-              COSMIC VISUAL ARCHIVE
-            </span>
-            <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-              Gallery & Media
-            </h1>
-            <p className="text-sm sm:text-base text-[#94A3B8] mt-2 max-w-xl">
-              Photographs captured by AMI-ASTRO members through club telescopes, long-exposure tracking mounts, and mountain observation expeditions.
-            </p>
-          </div>
-
-          {/* Category Filter Pills */}
-          <div className="flex items-center gap-2 p-1.5 bg-[#12182B] border border-[#1E293B] rounded-2xl overflow-x-auto">
+    <div className="bg-[#0B0F19] text-white min-h-screen">
+      {/* Cinematic Page Hero Header */}
+      <PageHeroHeader
+        breadcrumbs={[
+          { label: 'HOME', href: '/' },
+          { label: 'GALLERY', href: '/gallery' },
+        ]}
+        eyebrow="COSMIC VISUAL ARCHIVE"
+        title="Gallery & Media"
+        description="Photographs captured by AMI-ASTRO members through club telescopes, long-exposure tracking mounts, and mountain observation expeditions across Maharashtra."
+        action={
+          <div className="flex items-center gap-1.5 p-1.5 bg-[#12182B] border border-[#1E293B] rounded-2xl overflow-x-auto max-w-full">
             {categories.map((cat) => (
               <button
                 key={cat.value}
@@ -88,7 +73,10 @@ export default function GalleryPage() {
               </button>
             ))}
           </div>
-        </div>
+        }
+      />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-20">
 
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

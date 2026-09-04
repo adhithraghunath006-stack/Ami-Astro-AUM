@@ -4,6 +4,7 @@ import { Mail, ShieldAlert, Sparkles } from 'lucide-react';
 import { LinkedinIcon, GithubIcon, InstagramIcon } from '@/components/ui/SocialIcons';
 import { TEAM_MEMBERS_DATA } from '@/data/team';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
+import PageHeroHeader from '@/components/layout/PageHeroHeader';
 
 export const metadata = {
   title: 'Team & Committee | AMI-ASTRO Astronomy Club',
@@ -28,39 +29,20 @@ export default function TeamPage() {
   ];
 
   return (
-    <div className="py-10 lg:py-16 bg-[#0B0F19]">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumb */}
-        <div className="mb-6">
-          <Breadcrumbs
-            items={[
-              { label: 'HOME', href: '/' },
-              { label: 'TEAM', href: '/team' },
-            ]}
-          />
-        </div>
+    <div className="bg-[#0B0F19] text-white min-h-screen">
+      {/* Cinematic Page Hero Header */}
+      <PageHeroHeader
+        breadcrumbs={[
+          { label: 'HOME', href: '/' },
+          { label: 'TEAM', href: '/team' },
+        ]}
+        eyebrow="LEADERSHIP & COMMITTEE"
+        title="Team & Committee"
+        description="The passionate students and faculty mentors organizing telescope sessions, astro-workshops, and stargazing expeditions at Amity University Mumbai."
+        badge="Council Term 2025–2026"
+      />
 
-        {/* Page Header */}
-        <div className="max-w-2xl mb-8">
-          <span className="text-xs font-bold tracking-[0.2em] text-[#A78BFA] uppercase block mb-2">
-            LEADERSHIP & COMMITTEE
-          </span>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
-            Team & Committee
-          </h1>
-          <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed">
-            The passionate students and faculty mentors organizing telescope sessions, astro-workshops, and stargazing expeditions at Amity University Mumbai.
-          </p>
-        </div>
-
-        {/* Demo Data Disclaimer Card (Correction #1) */}
-        <div className="mb-14 p-4 rounded-xl bg-[#12182B] border border-[#1E293B] flex items-start gap-3 text-xs text-[#94A3B8]">
-          <ShieldAlert className="w-4 h-4 text-[#A78BFA] shrink-0 mt-0.5" />
-          <div>
-            <strong className="text-white font-semibold">Demo Profiles Notice:</strong>{' '}
-            In accordance with Phase 1 frontend requirements, committee profiles, titles, and social handles shown below are simulated demo structures designed for layout demonstration until official AMI-ASTRO roster data is synchronized.
-          </div>
-        </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-20 sm:pb-28">
 
         {/* Committee Groups */}
         <div className="space-y-16">

@@ -15,7 +15,7 @@ export const CLUB_INFO = {
     'We are a vibrant community of student stargazers, astrophysicists, and night-sky photographers at Amity University Mumbai. From hands-on Dobsonian telescope sessions on campus to dark-sky expeditions in the Sahyadris, we make the wonder of the cosmos accessible to every curious mind.',
 
   isDemoNotice:
-    'Notice: This website is a Phase 1 frontend prototype demonstration. Event dates, member profiles, and contact details are simulated demo data.',
+    'Welcome to AMI-ASTRO, the official astronomy and astrophysics society of Amity University Mumbai.',
 
   contact: {
     email: 'amiastro@amity.edu',

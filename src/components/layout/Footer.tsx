@@ -146,10 +146,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2.5">
                 <Phone className="w-4 h-4 text-[#6C63FF] shrink-0 mt-0.5" />
-                <span>
-                  {CLUB_INFO.contact.phone}{' '}
-                  <span className="text-[10px] text-[#64748B] block">(Demo contact)</span>
-                </span>
+                <span>{CLUB_INFO.contact.phone}</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#6C63FF] shrink-0 mt-0.5" />
@@ -172,8 +169,6 @@ export default function Footer() {
             <Link href="/contact#terms" className="hover:text-[#94A3B8] transition-colors">
               Terms of Use
             </Link>
-            <span>|</span>
-            <span className="text-[#A78BFA]/80">Phase 1 Demo Mode</span>
           </div>
         </div>
       </div>

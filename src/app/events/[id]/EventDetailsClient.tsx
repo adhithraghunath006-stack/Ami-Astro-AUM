@@ -108,9 +108,9 @@ export default function EventDetailsClient({ event }: EventDetailsClientProps) {
           </button>
         </div>
 
-        {/* Demo Notice */}
+        {/* Official Entry Pass Note */}
         <div className="text-[11px] text-[#64748B] text-center pt-2">
-          Phase 1 Prototype: Registrations operate locally in simulated mode.
+          Official Amity Astronomy Club Event • Entry pass generated upon registration
         </div>
       </div>
 

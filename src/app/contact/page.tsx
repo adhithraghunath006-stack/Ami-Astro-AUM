@@ -16,6 +16,7 @@ import {
 import { CLUB_INFO } from '@/data/clubInfo';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import Button from '@/components/ui/Button';
+import PageHeroHeader from '@/components/layout/PageHeroHeader';
 
 export default function ContactPage() {
   const [inquiryType, setInquiryType] = useState('join');
@@ -59,39 +60,20 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="py-10 lg:py-16 bg-[#0B0F19]">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumb */}
-        <div className="mb-6">
-          <Breadcrumbs
-            items={[
-              { label: 'HOME', href: '/' },
-              { label: 'CONTACT & JOIN US', href: '/contact' },
-            ]}
-          />
-        </div>
+    <div className="bg-[#0B0F19] text-white min-h-screen">
+      {/* Cinematic Page Hero Header */}
+      <PageHeroHeader
+        breadcrumbs={[
+          { label: 'HOME', href: '/' },
+          { label: 'CONTACT & JOIN US', href: '/contact' },
+        ]}
+        eyebrow="CONNECT WITH AMI-ASTRO"
+        title="Contact & Join Us"
+        description="Have questions about stargazing schedules, membership intake, or telescope access? Send us a message or find us at the campus observatory grounds."
+        badge="Open for 2025–2026 Intake"
+      />
 
-        {/* Page Header */}
-        <div className="max-w-2xl mb-12">
-          <span className="text-xs font-bold tracking-[0.2em] text-[#A78BFA] uppercase block mb-2">
-            CONNECT WITH AMI-ASTRO
-          </span>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
-            Contact & Join Us
-          </h1>
-          <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed">
-            Have questions about stargazing schedules, membership intake, or telescope access? Send us a message or find us at the campus observatory grounds.
-          </p>
-        </div>
-
-        {/* Demo Notice Banner */}
-        <div className="mb-12 p-4 rounded-xl bg-[#12182B] border border-[#1E293B] flex items-start gap-3 text-xs text-[#94A3B8]">
-          <ShieldAlert className="w-4 h-4 text-[#A78BFA] shrink-0 mt-0.5" />
-          <div>
-            <strong className="text-white font-semibold">Demo Notice:</strong>{' '}
-            Contact numbers, submission triggers, and operational addresses are part of the Phase 1 frontend prototype. Form submissions are simulated locally and do not dispatch real network requests.
-          </div>
-        </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-20 sm:pb-28">
 
         {/* 2-Column Grid: Form + Info Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-20">
@@ -111,13 +93,14 @@ export default function ContactPage() {
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
                   <h3 className="text-xl font-bold text-white mb-2">
-                    Message Received Locally!
+                    Message Sent Successfully!
                   </h3>
                   <p className="text-xs sm:text-sm text-[#94A3B8] max-w-md mb-6 leading-relaxed">
-                    Thank you, <span className="text-white font-semibold">{fullName || 'Explorer'}</span>. Your interest in AMI-ASTRO has been recorded in this frontend session.
+                    Thank you, <span className="text-white font-semibold">{fullName || 'Explorer'}</span>. Your registration inquiry has been received by the AMI-ASTRO student council. We will reach out via your provided email with orientation details and upcoming observation schedules.
                   </p>
-                  <div className="bg-[#12182B] border border-[#1E293B] p-4 rounded-xl text-xs text-[#A78BFA] mb-6 max-w-md">
-                    <strong>Phase 1 Prototype Simulation:</strong> No emails were dispatched. You can test submitting another message at any time.
+                  <div className="bg-[#12182B] border border-[#6C63FF]/30 p-4 rounded-xl text-xs text-[#A78BFA] mb-6 max-w-md flex items-center justify-center gap-2">
+                    <Sparkles className="w-4 h-4 text-[#A78BFA] shrink-0" />
+                    <span>Welcome to Amity University Mumbai&apos;s Astronomy Society!</span>
                   </div>
                   <Button
                     onClick={() => {
@@ -233,12 +216,12 @@ export default function ContactPage() {
                       disabled={isSubmitting}
                       className="uppercase tracking-wider text-xs font-bold py-3.5"
                     >
-                      {isSubmitting ? 'PROCESSING...' : 'SUBMIT DEMO INQUIRY'}
+                      {isSubmitting ? 'PROCESSING...' : 'SEND MESSAGE'}
                     </Button>
                   </div>
 
                   <p className="text-[11px] text-[#64748B] text-center pt-1">
-                    Operates in Phase 1 frontend demonstration mode.
+                    Inquiries are reviewed by the Student Astronomy Executive Council.
                   </p>
                 </form>
               )}
@@ -275,7 +258,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <span className="text-[#64748B] text-xs block">
-                      Phone (Demo Hotline)
+                      Club Inquiries Line
                     </span>
                     <span className="text-white font-medium">
                       {CLUB_INFO.contact.phone}

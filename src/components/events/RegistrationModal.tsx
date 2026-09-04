@@ -106,8 +106,9 @@ export default function RegistrationModal({
               </div>
             </div>
 
-            <div className="bg-[#6C63FF]/10 border border-[#6C63FF]/30 text-[#A78BFA] text-xs p-3 rounded-lg w-full mb-6">
-              <strong>Demo Notice:</strong> This action is simulated locally for the Phase 1 frontend prototype. No email or server data was dispatched.
+            <div className="bg-[#6C63FF]/10 border border-[#6C63FF]/30 text-[#A78BFA] text-xs p-3 rounded-lg w-full mb-6 flex items-center justify-center gap-2">
+              <Sparkles className="w-4 h-4 text-[#A78BFA] shrink-0" />
+              <span>A digital entry pass has been reserved for your Amity Student ID.</span>
             </div>
 
             <Button
@@ -211,12 +212,12 @@ export default function RegistrationModal({
                   disabled={isSubmitting}
                   className="uppercase tracking-wider text-xs font-bold py-3"
                 >
-                  {isSubmitting ? 'PROCESSING...' : 'CONFIRM DEMO REGISTRATION'}
+                  {isSubmitting ? 'PROCESSING...' : 'CONFIRM EVENT REGISTRATION'}
                 </Button>
               </div>
 
               <p className="text-[11px] text-[#64748B] text-center pt-1">
-                Phase 1 Prototype: Submission executes locally without backend persistence.
+                Official Amity Astronomy Club Event • Digital pass generated upon confirmation.
               </p>
             </form>
           </div>

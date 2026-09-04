@@ -44,7 +44,7 @@ export default function EventsPage() {
         <div className="relative rounded-3xl overflow-hidden p-8 sm:p-12 lg:p-16 mb-16 border border-[#1E293B] shadow-[0_0_50px_rgba(108,99,255,0.15)] bg-gradient-to-r from-[#12182B] via-[#0E1424] to-[#0B0F19]">
           <div className="absolute inset-0 z-0 opacity-40">
             <Image
-              src="/images/temp/about-silhouette.svg"
+              src="/images/about-stargazers.jpg"
               alt="Night sky starry background"
               fill
               priority

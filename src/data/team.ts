@@ -7,7 +7,7 @@ export const TEAM_MEMBERS_DATA: TeamMember[] = [
     role: 'Faculty Mentor & Advisory Head',
     committeeRole: 'Faculty Mentor',
     department: 'Department of Applied Physics & Aerospace',
-    avatar: '/images/temp/team-faculty.svg',
+    avatar: '/images/team-faculty.jpg',
     bio: 'Professor of Physics specializing in stellar spectroscopy and galactic dynamics. Mentoring AMI-ASTRO research projects, telescope acquisitions, and inter-university astronomy symposiums.',
     specialization: 'Stellar Astrophysics & Spectroscopy',
     socials: {
@@ -21,7 +21,7 @@ export const TEAM_MEMBERS_DATA: TeamMember[] = [
     role: 'Club President',
     committeeRole: 'Core Council',
     department: 'B.Tech Aerospace Engineering (Final Year)',
-    avatar: '/images/temp/team-president.svg',
+    avatar: '/images/team-president.jpg',
     bio: 'Oversees club strategy, observatory proposals, and dark-sky expeditions across the Western Ghats. Passionate about orbital mechanics and deep-sky imaging.',
     specialization: 'Observational Astronomy & Astrodynamics',
     socials: {
@@ -37,7 +37,7 @@ export const TEAM_MEMBERS_DATA: TeamMember[] = [
     role: 'Vice President',
     committeeRole: 'Core Council',
     department: 'B.Sc. Physics (Hons, 3rd Year)',
-    avatar: '/images/temp/team-vp.svg',
+    avatar: '/images/team-vp.jpg',
     bio: 'Directs academic workshops, planetary transit tracking sessions, and student peer-mentoring labs. Leads constellation walkthroughs during campus open nights.',
     specialization: 'Planetary Atmospheres & Variable Stars',
     socials: {
@@ -52,7 +52,7 @@ export const TEAM_MEMBERS_DATA: TeamMember[] = [
     role: 'Head of Telescopes & Observations',
     committeeRole: 'Domain Lead',
     department: 'B.Tech Mechanical Engineering (3rd Year)',
-    avatar: '/images/temp/team-lead-obs.svg',
+    avatar: '/images/team-president.jpg',
     bio: 'Manages telescope mirror collimation, polar alignments on computerized mounts, and star-hopping training for new members during Friday night observations.',
     specialization: 'Optical Telescope Mechanics & Collimation',
     socials: {
@@ -67,7 +67,7 @@ export const TEAM_MEMBERS_DATA: TeamMember[] = [
     role: 'Head of Astrophotography & Media',
     committeeRole: 'Domain Lead',
     department: 'B.Tech Computer Science (3rd Year)',
-    avatar: '/images/temp/team-lead-photo.svg',
+    avatar: '/images/team-vp.jpg',
     bio: 'Specializes in long-exposure nebular photography, multi-frame stacking with Siril and DeepSkyStacker, and wide-angle Milky Way timelapses.',
     specialization: 'Deep Sky Stacking & Mineral Moon Imaging',
     socials: {
@@ -83,7 +83,7 @@ export const TEAM_MEMBERS_DATA: TeamMember[] = [
     role: 'Technical & Web Systems Lead',
     committeeRole: 'Domain Lead',
     department: 'B.Tech Computer Science & AI (2nd Year)',
-    avatar: '/images/temp/team-lead-tech.svg',
+    avatar: '/images/team-president.jpg',
     bio: 'Lead developer behind the AMI-ASTRO web platform and real-time 3D solar system simulator. Exploring computational astrophysics and astronomical data pipelines.',
     specialization: 'WebGL 3D Graphics & Astronomical Data',
     socials: {
@@ -98,7 +98,7 @@ export const TEAM_MEMBERS_DATA: TeamMember[] = [
     role: 'Dark-Sky Expeditions & Logistics Lead',
     committeeRole: 'Domain Lead',
     department: 'B.Tech Civil Engineering (3rd Year)',
-    avatar: '/images/temp/team-president.svg',
+    avatar: '/images/team-president.jpg',
     bio: 'Coordinates dark-sky basecamp permits, Bortle scale location scouting in Lonavala and Bhandardara, and field camp safety for all off-campus astrocamps.',
     specialization: 'Field Scouting & Bortle Scale Analysis',
     socials: {
@@ -113,7 +113,7 @@ export const TEAM_MEMBERS_DATA: TeamMember[] = [
     role: 'Outreach & Science Communications Lead',
     committeeRole: 'Domain Lead',
     department: 'B.A. Journalism & Mass Communication (2nd Year)',
-    avatar: '/images/temp/team-vp.svg',
+    avatar: '/images/team-vp.jpg',
     bio: 'Curates public astronomy bulletins, solar telescope viewing drives on campus grounds, and community outreach for World Space Week.',
     specialization: 'Science Communication & Astro-Journalism',
     socials: {
@@ -128,7 +128,7 @@ export const TEAM_MEMBERS_DATA: TeamMember[] = [
     role: 'Workshops & Lab Coordinator',
     committeeRole: 'Domain Lead',
     department: 'M.Sc. Applied Physics (1st Year)',
-    avatar: '/images/temp/team-faculty.svg',
+    avatar: '/images/team-faculty.jpg',
     bio: 'Coordinates hands-on optics workshops, solar filter assembly sessions, and research guest lectures featuring astronomers from IUCAA and TIFR.',
     specialization: 'Optical Filters & Stellar Spectroscopy',
     socials: {
@@ -137,3 +137,4 @@ export const TEAM_MEMBERS_DATA: TeamMember[] = [
     },
   },
 ];
+
