@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: #020905;
+    color: #f1f5f9;
+  }
+
+  h1, h2, h3, h4, .font-heading {
+    font-family: var(--font-heading);
+  }
+
+  .font-mono, code, pre, .telemetry-text {
+    font-family: var(--font-mono);
+  }
+}
+
+/* Custom Loki Emerald Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #020905;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.35);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.7);
+}
+
+/* Loki Temporal Grid Background */
+.bg-tech-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(16, 185, 129, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 185, 129, 0.05) 1px, transparent 1px);
+}
+
+.bg-tech-dots {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(16, 185, 129, 0.08) 1px, transparent 1px);
+}
+
+/* Glassmorphic Panels (Dark Emerald Glass) */
+.hud-panel {
+  background: rgba(4, 20, 14, 0.75);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+}
+
+.hud-panel-active {
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 0 25px -3px rgba(16, 185, 129, 0.3);
+}
+
+/* TVA Accent Corner Borders */
+.tech-border {
+  position: relative;
+}
+.tech-border::before, .tech-border::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: #10b981;
+  pointer-events: none;
+}
+.tech-border::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid #10b981;
+  border-left: 2px solid #10b981;
+}
+.tech-border::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid #10b981;
+  border-right: 2px solid #10b981;
+}
+
+/* Animations */
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spinReverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.04); }
+}
+
+@keyframes radarSweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes floatAnim {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 30s linear infinite;
+}
+
+.animate-spin-slower {
+  animation: spinSlow 50s linear infinite;
+}
+
+.animate-spin-reverse {
+  animation: spinReverse 40s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+.animate-radar {
+  animation: radarSweep 8s linear infinite;
+}
+
+.animate-float {
+  animation: floatAnim 6s ease-in-out infinite;
+}
+
+/* Loki Text & Glow Utilities */
+.glow-text-emerald {
+  text-shadow: 0 0 16px rgba(16, 185, 129, 0.7), 0 0 32px rgba(16, 185, 129, 0.4);
+}
+
+.glow-box-emerald {
+  box-shadow: 0 0 20px -2px rgba(16, 185, 129, 0.4);
+}
+
+/* Legacy Support */
+.glow-text-cyan, .glow-text-amber {
+  text-shadow: 0 0 16px rgba(16, 185, 129, 0.7), 0 0 32px rgba(16, 185, 129, 0.4);
+}
+
+.glow-box-cyan, .glow-box-amber {
+  box-shadow: 0 0 20px -2px rgba(16, 185, 129, 0.4);
+}

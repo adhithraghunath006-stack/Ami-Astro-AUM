@@ -1,0 +1,20 @@
+# Query: UTC
+# ContextLines: 1
+
+5 results - 2 files
+
+src\components\Hero.tsx:
+  19        const now = new Date();
+  20:       const now = new Date();
+
+            const ist = now.toLocaleTimeString('en-IN', {
+            timeZone: 'Asia/Kolkata',
+            hour12: false,
+            }) + ' IST';
+
+            setMissionClock(ist);
+
+src\components\WhatsHappening.tsx:
+  24      const calculateCountdown = () => {
+  25:       // Deadline: 15 September 2026, 23:59:59 IST (UTC+5:30)
+  26        const targetDate = new Date('2026-09-15T23:59:59+05:30').getTime();

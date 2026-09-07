@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <circle cx="32" cy="32" r="30" fill="#030712" stroke="#00f0ff" stroke-width="1.5" stroke-opacity="0.4"/>
+  <!-- Orbital Ring -->
+  <ellipse cx="32" cy="32" rx="26" ry="10" transform="rotate(-28 32 32)" stroke="#00f0ff" stroke-width="1.5" stroke-dasharray="2 2"/>
+  <!-- Central Sphere -->
+  <circle cx="32" cy="32" r="12" fill="#080e21" stroke="#38bdf8" stroke-width="2"/>
+  <!-- Core Glow -->
+  <circle cx="32" cy="32" r="6" fill="#00f0ff"/>
+  <!-- Satellite Orbit Node -->
+  <circle cx="50" cy="22" r="3" fill="#38bdf8"/>
+</svg>
