@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Users, Sparkles, Activity, ShieldCheck, Orbit, Compass } from 'lucide-react';
+import { ArrowRight, Users, Activity, ShieldCheck, Orbit, Compass } from 'lucide-react';
 import { soundFx } from '../utils/audio';
 import { Astronaut3D } from './Astronaut3D';
 
