@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Sparkles, Eye, X } from 'lucide-react';
+import { ArrowRight, Sparkles, Eye, X, Calendar as CalendarIcon } from 'lucide-react';
 import { EVENTS_DATA } from '@/data/events';
 import { GALLERY_DATA } from '@/data/gallery';
 import { GalleryCategory } from '@/types';
@@ -42,7 +42,7 @@ export default function EventsPage() {
         </div>
 
         {/* Header Hero Section matching Panel 2 */}
-        <div className="relative rounded-3xl overflow-hidden p-8 sm:p-12 lg:p-16 mb-16 border border-[#1E293B] shadow-[0_0_50px_rgba(108,99,255,0.15)] bg-gradient-to-r from-[#12182B] via-[#0E1424] to-[#0B0F19]">
+        <div className="relative rounded-3xl overflow-hidden p-8 sm:p-12 lg:p-16 mb-12 border border-[#1E293B] shadow-[0_0_50px_rgba(108,99,255,0.15)] bg-gradient-to-r from-[#12182B] via-[#0E1424] to-[#0B0F19]">
           <div className="absolute inset-0 z-0 opacity-40">
             <Image
               src="/images/about-stargazers.jpg"
@@ -65,14 +65,48 @@ export default function EventsPage() {
             <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed mb-6">
               Plan your nights. Look up. Be amazed. Here are the key astronomical events in September 2026 — planetary conjunctions, greatest elongation, equinox alignment, and dark-sky expeditions.
             </p>
-            <button
-              onClick={() => setShowPosterModal(true)}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#6C63FF]/20 hover:bg-[#6C63FF]/30 border border-[#6C63FF]/40 text-xs font-bold tracking-wider text-[#A78BFA] hover:text-white uppercase transition-all shadow-[0_0_20px_rgba(108,99,255,0.2)]"
-            >
-              <Eye className="w-4 h-4" />
-              <span>View Official Poster</span>
-            </button>
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                onClick={() => setShowPosterModal(true)}
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#6C63FF]/20 hover:bg-[#6C63FF]/30 border border-[#6C63FF]/40 text-xs font-bold tracking-wider text-[#A78BFA] hover:text-white uppercase transition-all shadow-[0_0_20px_rgba(108,99,255,0.2)]"
+              >
+                <Eye className="w-4 h-4" />
+                <span>View Official Poster</span>
+              </button>
+
+              <Link
+                href="/calendar"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/35 text-xs font-bold tracking-wider text-cyan-300 hover:text-white uppercase transition-all shadow-[0_0_20px_rgba(56,189,248,0.15)]"
+              >
+                <Sparkles className="w-4 h-4 text-cyan-400" />
+                <span>2026 Celestial Almanac & Calendar →</span>
+              </Link>
+            </div>
           </div>
+        </div>
+
+        {/* Year-Round Almanac Banner Callout */}
+        <div className="mb-12 p-5 sm:p-6 rounded-2xl bg-[#0E1424] border border-[#1E293B] flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl">
+          <div className="flex items-center gap-4">
+            <div className="w-11 h-11 rounded-xl bg-[#6C63FF]/15 border border-[#6C63FF]/30 flex items-center justify-center text-[#A78BFA] shrink-0">
+              <CalendarIcon className="w-5 h-5" />
+            </div>
+            <div>
+              <h4 className="text-sm sm:text-base font-bold text-white mb-0.5">
+                Explore the Year-Round 2026 Astronomy Calendar
+              </h4>
+              <p className="text-xs text-[#94A3B8]">
+                Interactive monthly calendar grid, 55 celestial events, meteor showers, solar & lunar eclipses, planetary oppositions, and dual UTC / IST timezone conversion.
+              </p>
+            </div>
+          </div>
+          <Link
+            href="/calendar"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#6C63FF] hover:bg-[#5B52F0] text-xs font-bold text-white uppercase tracking-wider transition-all shrink-0 self-start sm:self-auto shadow-[0_0_15px_rgba(108,99,255,0.35)]"
+          >
+            <span>Open Calendar</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
 
         {/* Upcoming Event Cards Grid */}

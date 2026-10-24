@@ -91,6 +91,7 @@ export default function Footer() {
                     {link.label === 'HOME' ? 'Home' :
                      link.label === 'ABOUT' ? 'About' :
                      link.label === 'EVENTS' ? 'Events' :
+                     link.label === 'CALENDAR' ? 'Astronomy Calendar' :
                      link.label === 'GALLERY' ? 'Gallery' :
                      link.label === 'ANNOUNCEMENTS' ? 'Announcements' :
                      link.label === 'TEAM' ? 'Team' : 'Contact'}
@@ -106,6 +107,11 @@ export default function Footer() {
               CONNECT
             </h2>
             <ul className="flex flex-col gap-2.5 text-xs text-[#94A3B8]">
+              <li>
+                <Link href="/calendar" className="hover:text-[#A78BFA] transition-colors">
+                  2026 Celestial Almanac
+                </Link>
+              </li>
               <li>
                 <Link href="/contact#join" className="hover:text-[#A78BFA] transition-colors">
                   Join Us

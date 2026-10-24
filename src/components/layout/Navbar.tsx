@@ -62,7 +62,7 @@ export default function Navbar() {
           {/* Desktop Navigation Links */}
           <nav
             aria-label="Main Navigation"
-            className="hidden md:flex items-center gap-1 lg:gap-2 xl:gap-4"
+            className="hidden md:flex items-center gap-0.5 lg:gap-1 xl:gap-2.5"
           >
             {CLUB_INFO.navLinks.map((link) => {
               const isActive =
@@ -74,7 +74,7 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-xs xl:text-sm font-semibold tracking-wider px-3 py-2 rounded-md transition-all duration-200 uppercase relative ${
+                  className={`text-[11px] lg:text-xs xl:text-sm font-semibold tracking-wider px-2 xl:px-3 py-1.5 xl:py-2 rounded-md transition-all duration-200 uppercase relative ${
                     isActive
                       ? 'text-white'
                       : 'text-[#94A3B8] hover:text-white hover:bg-white/5'
@@ -82,7 +82,7 @@ export default function Navbar() {
                 >
                   {link.label}
                   {isActive && (
-                    <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-[#6C63FF] shadow-[0_0_8px_#6C63FF]" />
+                    <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-[#6C63FF] shadow-[0_0_8px_#6C63FF]" />
                   )}
                 </Link>
               );
@@ -95,7 +95,7 @@ export default function Navbar() {
               href="/contact#join"
               variant="primary"
               size="md"
-              className="font-semibold text-xs tracking-wider uppercase px-5 py-2.5 rounded-lg"
+              className="font-semibold text-xs tracking-wider uppercase px-4 xl:px-5 py-2.5 rounded-lg"
             >
               JOIN US
             </Button>

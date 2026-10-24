@@ -51,6 +51,7 @@ export const CLUB_INFO = {
     { label: 'HOME', href: '/' },
     { label: 'ABOUT', href: '/about' },
     { label: 'EVENTS', href: '/events' },
+    { label: 'CALENDAR', href: '/calendar' },
     { label: 'GALLERY', href: '/gallery' },
     { label: 'ANNOUNCEMENTS', href: '/announcements' },
     { label: 'TEAM', href: '/team' },
