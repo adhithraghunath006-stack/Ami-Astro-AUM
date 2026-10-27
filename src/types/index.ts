@@ -46,8 +46,9 @@ export interface TeamMember {
   id: string;
   name: string;
   role: string;
-  committeeRole: 'Faculty Mentor' | 'Core Council' | 'Domain Lead' | 'Advisory';
+  committeeRole: 'Faculty Mentor' | 'Core Council' | 'Domain Lead' | 'Domain Member' | 'Executive Member' | 'Advisory';
   department: string;
+  domain?: string;
   avatar: string;
   bio: string;
   specialization?: string;
