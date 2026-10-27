@@ -191,7 +191,7 @@ export const TEAM_MEMBERS_DATA: TeamMember[] = [
     committeeRole: 'Domain Member',
     department: 'Digital Media Team',
     domain: 'Digital Media',
-    avatar: '/images/team/sameer-patel.jpeg',
+    avatar: '/images/team/sameer-patel.png',
     bio: 'Crafting visual assets, motion graphics, and social media reels highlighting club observation nights and space milestones.',
     specialization: 'Visual Assets & Motion Design',
     socials: {

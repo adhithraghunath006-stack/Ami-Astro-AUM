@@ -2,8 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import Image from 'next/image';
-import { Mail, Users, Award, Telescope, Compass } from 'lucide-react';
-import { LinkedinIcon, GithubIcon, InstagramIcon } from '@/components/ui/SocialIcons';
+import { Users, Award, Telescope, Compass } from 'lucide-react';
 import { TEAM_MEMBERS_DATA } from '@/data/team';
 import PageHeroHeader from '@/components/layout/PageHeroHeader';
 import { TeamMember } from '@/types';
@@ -185,68 +184,9 @@ export default function TeamPage() {
           </div>
 
           {/* Member Bio */}
-          <p className="text-xs text-[#94A3B8] leading-relaxed mb-4">
+          <p className="text-xs text-[#94A3B8] leading-relaxed">
             {member.bio}
           </p>
-
-          {/* Specialization / Key Domain Focus */}
-          {member.specialization && (
-            <div className="text-[11px] text-[#CBD5E1] bg-[#0B0F19]/90 px-3 py-2 rounded-xl border border-[#1E293B] mb-4">
-              <span className="text-[#64748B] font-semibold">Specialization: </span>
-              <span>{member.specialization}</span>
-            </div>
-          )}
-        </div>
-
-        {/* Social / Contact Links Footer */}
-        <div className="pt-3 border-t border-[#1E293B]/70 flex items-center justify-between">
-          <span className="text-[10px] text-[#64748B] uppercase tracking-wider font-semibold">
-            Connect
-          </span>
-          <div className="flex items-center gap-2">
-            {member.socials.linkedin && (
-              <a
-                href={member.socials.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${member.name} LinkedIn Profile`}
-                className="w-8 h-8 rounded-lg bg-[#0B0F19] border border-[#1E293B] hover:border-[#6C63FF] text-[#94A3B8] hover:text-white flex items-center justify-center transition-colors"
-              >
-                <LinkedinIcon size={14} />
-              </a>
-            )}
-            {member.socials.github && (
-              <a
-                href={member.socials.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${member.name} GitHub Profile`}
-                className="w-8 h-8 rounded-lg bg-[#0B0F19] border border-[#1E293B] hover:border-[#6C63FF] text-[#94A3B8] hover:text-white flex items-center justify-center transition-colors"
-              >
-                <GithubIcon size={14} />
-              </a>
-            )}
-            {member.socials.instagram && (
-              <a
-                href={member.socials.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${member.name} Official Instagram`}
-                className="w-8 h-8 rounded-lg bg-[#0B0F19] border border-[#1E293B] hover:border-[#6C63FF] text-[#94A3B8] hover:text-white flex items-center justify-center transition-colors"
-              >
-                <InstagramIcon size={14} />
-              </a>
-            )}
-            {member.socials.email && (
-              <a
-                href={member.socials.email}
-                aria-label={`Email ${member.name}`}
-                className="w-8 h-8 rounded-lg bg-[#0B0F19] border border-[#1E293B] hover:border-[#6C63FF] text-[#94A3B8] hover:text-white flex items-center justify-center transition-colors"
-              >
-                <Mail className="w-3.5 h-3.5" />
-              </a>
-            )}
-          </div>
         </div>
       </div>
     );
